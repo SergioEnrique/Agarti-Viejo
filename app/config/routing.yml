@@ -1,0 +1,4 @@
+ag_principal:
+    resource: "@AGPrincipalBundle/Resources/config/routing.yml"
+    prefix:   /
+

@@ -1,0 +1,7 @@
+parameters:
+#    ag_principal.example.class: AG\PrincipalBundle\Example
+
+services:
+#    ag_principal.example:
+#        class: %ag_principal.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
