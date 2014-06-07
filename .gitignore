@@ -1,0 +1,12 @@
+/app/config/parameters.yml
+phpunit.xml
+composer.lock
+composer.phar
+/app/cache/*
+/app/logs/*
+!app/cache/.gitkeep
+!app/logs/.gitkeep
+autoload.php
+/vendor/
+/web/bundles/
+/app/bootstrap*
