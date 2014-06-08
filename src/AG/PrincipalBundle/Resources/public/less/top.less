@@ -1,0 +1,48 @@
+.top-row{
+	.make-row();
+	margin-top: 10px;
+	margin-bottom: 15px;
+}
+
+.logo-agarti{
+	.make-sm-column(2);
+	.make-xs-column(4);
+}
+
+.info-title{
+	.make-xs-column(8);
+	.make-sm-column(6);
+	.make-md-column(5);
+	text-align: right;
+}
+
+.atencion-clientes-top{
+	.atencion-clientes();
+	color: @primary;
+}
+
+.sadecv{
+	.make-row();
+	margin-top: 16px;
+}
+
+.sadecv span{
+	font-weight: bold;
+	color: @primary;
+	font-size: 12px;
+	@media(min-width: @screen-tablet){
+		font-size: 14px;
+	}
+}
+
+.top-links{
+	.hidden-xs();
+	.make-sm-column(4);
+	.make-md-column(5);
+	text-align: right;
+	font-size:12px;
+}
+
+.margin-nav{
+	margin-top: -20px;
+}

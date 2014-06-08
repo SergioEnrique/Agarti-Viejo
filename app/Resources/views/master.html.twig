@@ -1,0 +1,14 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+    {% include '::top.html.twig' %}
+
+    <div class="page-background">
+        <div class="container page-content">
+            {% block contenido %}
+            {% endblock %}
+        </div>
+    </div>
+
+{% endblock %}
