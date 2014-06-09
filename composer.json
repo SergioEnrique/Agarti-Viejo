@@ -6,6 +6,19 @@
     "autoload": {
         "psr-0": { "": "src/", "SymfonyStandard": "app/" }
     },
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "tympanus/OriginalHoverEffects",
+                "version": "1.0",
+                "dist": {
+                    "type": "zip",
+                    "url": "http://tympanus.net/Tutorials/OriginalHoverEffects/OriginalHoverEffects.zip"
+                }
+            }
+        }
+    ],
     "require": {
         "php": ">=5.3.3",
         "symfony/symfony": "2.5.*",
@@ -24,7 +37,8 @@
         "knplabs/knp-paginator-bundle": "dev-master",
         "knplabs/knp-menu-bundle": "dev-master",
         "knplabs/knp-menu": "2.0.*@dev",
-        "craue/formflow-bundle": "dev-master"
+        "craue/formflow-bundle": "dev-master",
+        "tympanus/OriginalHoverEffects": "1.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

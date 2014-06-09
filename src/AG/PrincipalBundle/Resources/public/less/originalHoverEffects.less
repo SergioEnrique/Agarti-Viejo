@@ -1,0 +1,60 @@
+.view{
+	width: 191px;
+	height: 191px;
+    float: none;
+    margin: 0 auto;
+	background: #fff url(../../../img/bgimg.jpg) no-repeat center center;
+}
+
+.view h2 {
+   font-size: 12px;
+   padding: 5px;
+   margin: 5px 0 0 0;
+}
+
+.view p{
+    padding: 5px 5px 5px;
+}
+
+.view-ninth .mask-1, .view-ninth .mask-2 {
+    background: rgba(148, 144, 60, 0.5);
+}
+
+.view-ninth .mask-1 {
+    left: auto;
+    right: 0;
+    -webkit-transform: rotate(45deg) translateX(-180px);
+    -moz-transform: rotate(45deg) translateX(-180px);
+    -o-transform: rotate(45deg) translateX(-180px);
+    -ms-transform: rotate(45deg) translateX(-180px);
+    transform: rotate(45deg) translateX(-180px);
+}
+.view-ninth .mask-2 {
+    top: auto;
+    bottom: 0;
+    -webkit-transform: rotate(45deg) translateX(180px);
+    -moz-transform: rotate(45deg) translateX(180px);
+    -o-transform: rotate(45deg) translateX(180px);
+    -ms-transform: rotate(45deg) translateX(180px);
+    transform: rotate(45deg) translateX(180px);
+}
+
+.view-ninth:hover .mask-1 {
+    -webkit-transform: rotate(45deg) translateX(1px);
+    -moz-transform: rotate(45deg) translateX(1px);
+    -o-transform: rotate(45deg) translateX(1px);
+    -ms-transform: rotate(45deg) translateX(1px);
+    transform: rotate(45deg) translateX(1px);
+}
+.view-ninth:hover .mask-2 {
+    -webkit-transform: rotate(45deg) translateX(-1px);
+    -moz-transform: rotate(45deg) translateX(-1px);
+    -o-transform: rotate(45deg) translateX(-1px);
+    -ms-transform: rotate(45deg) translateX(-1px);
+    transform: rotate(45deg) translateX(-1px);
+}
+
+.view-ninth:hover .content{
+    width: 172px;
+    top: 27px;
+}

@@ -1,5 +1,17 @@
 {% extends '::base.html.twig' %}
 
+{% block stylesheets %}
+    {% stylesheets
+        '%kernel.root_dir%/../vendor/tympanus/OriginalHoverEffects/css/style_common.css'
+        '%kernel.root_dir%/../vendor/tympanus/OriginalHoverEffects/css/style9.css'
+        filter='?yui_css'
+        output='css/OriginalHoverEffects.css'
+    %}
+    	<link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
+    {% endstylesheets %}
+    {{ parent() }}
+{% endblock %}
+
 {% block body %}
 
     {% include '::top.html.twig' %}
@@ -12,4 +24,16 @@
         </div>
     </div>
 
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+    {% javascripts
+        '%kernel.root_dir%/../vendor/twbs/bootstrap/js/carousel.js'
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <script type="text/javascript">
+        $('.carousel').carousel();
+    </script>
 {% endblock %}

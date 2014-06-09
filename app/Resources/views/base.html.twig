@@ -66,14 +66,10 @@
         {% javascripts
             'https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'
             '%kernel.root_dir%/../vendor/twbs/bootstrap/dist/js/bootstrap.min.js'
-            '%kernel.root_dir%/../vendor/twbs/bootstrap/js/carousel.js'
             output='js/scripts.js'
         %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
-        <script type="text/javascript">
-            $('.carousel').carousel();
-        </script>
     {% endblock %}
 
 </body>
