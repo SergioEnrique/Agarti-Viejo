@@ -8,13 +8,14 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="{{asset('img/favicon.ico')}}">
 
+    {#'%kernel.root_dir%/../vendor/twbs/bootstrap/less/bootstrap.less'#}
     {% block stylesheets %}
 	    {% stylesheets
 	        '@AGPrincipalBundle/Resources/public/less/styles.less'
-	        filter='less,?yui_css'
+	        filter='less,cssrewrite,?yui_css'
 	        output='css/styles.css'
 	    %}
-	    	<link href="{{ asset_url }}" rel="stylesheet" media="screen" />
+	    	<link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
 	    {% endstylesheets %}
 	{% endblock %}
 
@@ -64,8 +65,9 @@
     {% block javascripts %}
         {% javascripts
             'https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'
-            '@AGPrincipalBundle/Resources/public/js/bootstrap.min.js'
-            '@AGPrincipalBundle/Resources/public/js/carousel.js'
+            '%kernel.root_dir%/../vendor/twbs/bootstrap/dist/js/bootstrap.min.js'
+            '%kernel.root_dir%/../vendor/twbs/bootstrap/js/carousel.js'
+            output='js/scripts.js'
         %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
