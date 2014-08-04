@@ -1,3 +1,6 @@
 ag_principal_homepage:
     pattern:  /
     defaults: { _controller: AGPrincipalBundle:Default:index }
+ag_principal_catalgo_admin:
+    pattern:  /admin/catalogo
+    defaults: { _controller: AGPrincipalBundle:Default:catalogoAdmin }

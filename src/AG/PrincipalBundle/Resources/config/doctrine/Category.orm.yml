@@ -1,0 +1,16 @@
+AG\PrincipalBundle\Entity\Category:
+    type: entity 
+    table: categories
+    oneToMany:
+        productos:
+            targetEntity: Producto
+            mappedBy: category
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 150

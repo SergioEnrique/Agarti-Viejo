@@ -1,0 +1,30 @@
+AG\PrincipalBundle\Entity\Producto:
+    type: entity 
+    table: productos
+    manyToOne:
+        category:
+            targetEntity: Category
+            inversedBy: productos
+            joinColumn:
+                name: categoryID
+                referencedColumnName: id
+    oneToMany:
+        fotos:
+            targetEntity: Foto
+            mappedBy: producto
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        categoryID:
+            type: integer
+        clave:
+            type: string
+            length: 100
+        Nombre:
+            type: string
+            length: 150
+        Precio:
+            type: float

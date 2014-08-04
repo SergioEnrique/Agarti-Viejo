@@ -1,0 +1,21 @@
+AG\PrincipalBundle\Entity\Foto:
+    type: entity 
+    table: fotos
+    manyToOne:
+        producto:
+            targetEntity: Producto
+            inversedBy: fotos
+            joinColumn:
+                name: productoID
+                referencedColumnName: id
+    id:
+        id:
+            type: integer
+            generator: 
+                strategy: AUTO
+    fields:
+        productoID:
+            type: integer
+        path:
+            type: string
+            length: 255
