@@ -4,6 +4,9 @@
 
 			<h4>Administración del Catálogo</h4>
 
+			<a href="{{url('ag_principal_nuevo_producto')}}">Nuevo producto</a>
+
+{#
             {% if resultados %}
                 <table class="table table-striped table-hover table-responsive" style="height:0!important">
                     <thead>
@@ -26,5 +29,6 @@
             {% else %}
                 <br /><strong>No se encontraron resultados</strong>
             {% endif %}
+#}
 
 {% endblock %}

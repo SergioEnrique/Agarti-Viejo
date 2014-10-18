@@ -35,7 +35,8 @@ assetic:
     use_controller: false
     #java: %java_path%
     bundles:        [ AGPrincipalBundle ]
-    java: /usr/bin/java
+    #java: /usr/bin/java
+    java: c:\\Program Files\\Java\\jre7\\bin\\java.exe
     filters:
         less:
             node: /usr/bin/node

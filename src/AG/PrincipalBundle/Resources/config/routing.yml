@@ -4,3 +4,6 @@ ag_principal_homepage:
 ag_principal_catalgo_admin:
     pattern:  /admin/catalogo
     defaults: { _controller: AGPrincipalBundle:Default:catalogoAdmin }
+ag_principal_nuevo_producto:
+    pattern:  /admin/nuevoproducto
+    defaults: { _controller: AGPrincipalBundle:Default:nuevoProducto }

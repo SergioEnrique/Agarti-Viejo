@@ -38,7 +38,8 @@
         "knplabs/knp-menu-bundle": "dev-master",
         "knplabs/knp-menu": "2.0.*@dev",
         "craue/formflow-bundle": "dev-master",
-        "tympanus/OriginalHoverEffects": "1.0"
+        "tympanus/OriginalHoverEffects": "1.0",
+        "leafo/lessphp": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

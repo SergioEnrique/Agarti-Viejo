@@ -26,5 +26,13 @@ AG\PrincipalBundle\Entity\Producto:
         Nombre:
             type: string
             length: 150
+        Slug:
+            type: string
+            length: 100
         Precio:
             type: float
+        Medidas:
+            type: string
+            length: 100
+        Contenido:
+            type: text
