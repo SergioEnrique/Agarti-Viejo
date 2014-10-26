@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
 use AG\PrincipalBundle\Entity\Producto;
+use AG\PrincipalBundle\Entity\Category;
 
 use AG\PrincipalBundle\Form\Type\NuevoProductoType;
 
@@ -32,8 +33,21 @@ class DefaultController extends Controller
         if('POST' === $request->getMethod()) {
             if($request->request->has($formProducto->getName())) {
 
-            	$em->persist($nuevoProducto);
-                $em->flush();
+                $formProducto->handleRequest($request);
+
+                if($formProducto->isValid())
+                {
+                    $productoService = $this->get('producto_service');
+
+                    $categoryEntity = $em->getRepository('AGPrincipalBundle:Category');
+                    $category = $categoryEntity->findOneById($formProducto['Categoria']->getData());
+
+                    $nuevoProducto->setCategory($category);
+                    $nuevoProducto->setSlug($productoService->getSlug($nuevoProducto->getNombre()));
+
+                	$em->persist($nuevoProducto);
+                    $em->flush();
+                }
             }
         }
 

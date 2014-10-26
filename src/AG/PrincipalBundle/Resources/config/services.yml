@@ -1,7 +1,15 @@
+#parameters:
+#    nw_principal.controller.forms.class: NW\PrincipalBundle\Controller\FormsController
+#services:
+#    nw_principal.forms.controller:
+#        class: "%nw_principal.controller.forms.class%"
+#services:
+#    nw_principal.forms.controller.manyForms:
+#        class: NW\PrincipalBundle\Controller\FormsController\manyFormsAction
 parameters:
-#    ag_principal.example.class: AG\PrincipalBundle\Example
+    producto_service.class: AG\PrincipalBundle\Servicios\Producto
 
 services:
-#    ag_principal.example:
-#        class: %ag_principal.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    producto_service:
+        class:     %producto_service.class%
+        arguments: [@router, @doctrine.orm.entity_manager]

@@ -14,7 +14,22 @@ class NuevoProductoType extends AbstractType
     {
         $builder->add('Nombre', 'text');
         $builder->add('clave', 'text');
-        $builder->add('Categoria', 'text', array('mapped' => false));
+        $builder->add('Categoria', 'choice', array(
+                'choices' => array(
+                    '1'   => 'Agendas de Bolsillo',
+                    '2'   => 'Agendas de Escritorio',
+                    '3'   => 'Agendas de Diario',
+                    '4'   => 'Directorios',
+                    '5'   => 'Carpetas de Vinil',
+                    '6'   => 'Carpetas de Curpiel',
+                    '7'   => 'Carpetas Escolares',
+                    '8'   => 'Tarjeteros',
+                    '9'   => 'Porta Menús',
+                    '10'  => 'Micas y Porta Gafetes',
+                    ),
+                'multiple' => false,
+                'required' => false,
+                'mapped'   => false));
         $builder->add('Precio', 'number');
         $builder->add('Medidas', 'text');
         $builder->add('Contenido', 'textarea');
