@@ -28,7 +28,7 @@ class NuevoProductoType extends AbstractType
                     '10'  => 'Micas y Porta Gafetes',
                     ),
                 'multiple' => false,
-                'required' => false,
+                'required' => true,
                 'mapped'   => false));
         $builder->add('Precio', 'number');
         $builder->add('Medidas', 'text');
