@@ -59,9 +59,16 @@ class Foto
      *
      * @return integer 
      */
-    public function getProductoID()
+    public function getProductoID($productoId)
     {
-        return $this->productoID;
+        if (!$productoId)
+        {
+            return $this->producto->getId();
+        }
+        else
+        {
+            return $productoId;
+        }
     }
 
     /**
@@ -110,32 +117,32 @@ class Foto
         return $this->producto;
     }
 
-    public function getAbsolutePath()
+    public function getAbsolutePath($productoId)
     {
         return null === $this->path
             ? null
-            : $this->getUploadRootDir().'/'.$this->path;
+            : $this->getUploadRootDir($productoId).'/'.$this->path;
     }
 
-    public function getWebPath()
+    public function getWebPath($productoId)
     {
         return null === $this->path
             ? null
-            : $this->getUploadDir().'/'.$this->path;
+            : $this->getUploadDir($productoId).'/'.$this->path;
     }
 
-    protected function getUploadRootDir()
+    protected function getUploadRootDir($productoId)
     {
         // the absolute directory path where uploaded
         // documents should be saved
-        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+        return __DIR__.'/../../../../web/'.$this->getUploadDir($productoId);
     }
 
-    protected function getUploadDir()
+    protected function getUploadDir($productoId)
     {
         // get rid of the __DIR__ so it doesn't screw up
         // when displaying uploaded doc/image in the view.
-        return 'uploads/productos/'.$this->productoID;
+        return 'uploads/productos/'.$this->getProductoID($productoId);
     }
 
     /**
@@ -163,7 +170,7 @@ class Foto
         return $this->file;
     }
 
-    public function upload()
+    public function upload($productoId)
     {
         // the file property can be empty if the field is not required
         if (null === $this->getFile()) {
@@ -176,7 +183,7 @@ class Foto
         // move takes the target directory and then the
         // target filename to move to
         $this->getFile()->move(
-            $this->getUploadRootDir(),
+            $this->getUploadRootDir($productoId),
             $this->getFile()->getClientOriginalName()
         );
 

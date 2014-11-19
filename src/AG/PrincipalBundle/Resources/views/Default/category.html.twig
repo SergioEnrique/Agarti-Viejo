@@ -14,7 +14,7 @@
 		{% for producto in productos %}
 			<div class="row" style="border-top: solid 1px rgb(226, 226, 226);margin-top: 10px;padding-top: 17px;">
 				{{producto.Nombre}}:
-				<img src="{{asset(producto.fotos.0.getWebPath)}}" height="200">
+				<img src="{{asset(producto.fotos.0.getWebPath(producto.id))}}" height="200">
 			</div>
 		{% endfor %}
 
