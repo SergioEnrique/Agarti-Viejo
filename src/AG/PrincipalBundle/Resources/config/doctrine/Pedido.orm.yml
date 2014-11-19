@@ -1,0 +1,34 @@
+AG\PrincipalBundle\Entity\Pedido:
+    type: entity 
+    table: pedidos
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        fecha:
+            type: datetime
+        empresa:
+            type: string
+            length: 100
+        factura:
+            type: boolean
+            length: 150
+        descuento:
+            type: integer
+            length: 100
+        cotizacionNo:
+            type: float
+        productoId:
+            type: integer
+            length: 100
+        cantidad:
+            type: integer
+        variacion:
+            type: string
+        interior:
+        exterior:
+        logo:
+        notas:
+            type: text

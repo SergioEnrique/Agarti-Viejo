@@ -31,8 +31,43 @@ AG\PrincipalBundle\Entity\Producto:
             length: 100
         Precio:
             type: float
+        PrecioEspecial:
+            type: float
+            nullable: true
         Medidas:
             type: string
             length: 100
-        Contenido:
+            nullable: true
+        Interior:
+            type: string
+            length: 100
+            nullable: true
+        Exterior:
+            type: string
+            length: 100
+            nullable: true
+        Colores:
+            type: string
+            length: 100
+            nullable: true
+        Paginas:
+            type: integer
+            nullable: true
+        Encuadernacion:
+            type: string
+            length: 100
+            nullable: true
+        Publicidad:
+            type: string
+            length: 150
+            nullable: true
+        Empaque:
+            type: string
+            length: 100
+            nullable: true
+        Caracteristicas:
             type: text
+            nullable: true
+        Descripcion:
+            type: text
+            nullable: true

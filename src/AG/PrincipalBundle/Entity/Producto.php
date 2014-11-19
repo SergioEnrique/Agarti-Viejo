@@ -293,4 +293,284 @@ class Producto
     {
         return $this->Contenido;
     }
+    /**
+     * @var float
+     */
+    private $PrecioEspecial;
+
+    /**
+     * @var string
+     */
+    private $Interior;
+
+    /**
+     * @var string
+     */
+    private $Exterior;
+
+    /**
+     * @var string
+     */
+    private $Colores;
+
+    /**
+     * @var integer
+     */
+    private $Paginas;
+
+    /**
+     * @var string
+     */
+    private $Encuadernacion;
+
+    /**
+     * @var string
+     */
+    private $Publicidad;
+
+    /**
+     * @var string
+     */
+    private $Empaque;
+
+    /**
+     * @var string
+     */
+    private $Caracteristicas;
+
+    /**
+     * @var string
+     */
+    private $Descripcion;
+
+
+    /**
+     * Set PrecioEspecial
+     *
+     * @param float $precioEspecial
+     * @return Producto
+     */
+    public function setPrecioEspecial($precioEspecial)
+    {
+        $this->PrecioEspecial = $precioEspecial;
+
+        return $this;
+    }
+
+    /**
+     * Get PrecioEspecial
+     *
+     * @return float 
+     */
+    public function getPrecioEspecial()
+    {
+        return $this->PrecioEspecial;
+    }
+
+    /**
+     * Set Interior
+     *
+     * @param string $interior
+     * @return Producto
+     */
+    public function setInterior($interior)
+    {
+        $this->Interior = $interior;
+
+        return $this;
+    }
+
+    /**
+     * Get Interior
+     *
+     * @return string 
+     */
+    public function getInterior()
+    {
+        return $this->Interior;
+    }
+
+    /**
+     * Set Exterior
+     *
+     * @param string $exterior
+     * @return Producto
+     */
+    public function setExterior($exterior)
+    {
+        $this->Exterior = $exterior;
+
+        return $this;
+    }
+
+    /**
+     * Get Exterior
+     *
+     * @return string 
+     */
+    public function getExterior()
+    {
+        return $this->Exterior;
+    }
+
+    /**
+     * Set Colores
+     *
+     * @param string $colores
+     * @return Producto
+     */
+    public function setColores($colores)
+    {
+        $this->Colores = $colores;
+
+        return $this;
+    }
+
+    /**
+     * Get Colores
+     *
+     * @return string 
+     */
+    public function getColores()
+    {
+        return $this->Colores;
+    }
+
+    /**
+     * Set Paginas
+     *
+     * @param integer $paginas
+     * @return Producto
+     */
+    public function setPaginas($paginas)
+    {
+        $this->Paginas = $paginas;
+
+        return $this;
+    }
+
+    /**
+     * Get Paginas
+     *
+     * @return integer 
+     */
+    public function getPaginas()
+    {
+        return $this->Paginas;
+    }
+
+    /**
+     * Set Encuadernacion
+     *
+     * @param string $encuadernacion
+     * @return Producto
+     */
+    public function setEncuadernacion($encuadernacion)
+    {
+        $this->Encuadernacion = $encuadernacion;
+
+        return $this;
+    }
+
+    /**
+     * Get Encuadernacion
+     *
+     * @return string 
+     */
+    public function getEncuadernacion()
+    {
+        return $this->Encuadernacion;
+    }
+
+    /**
+     * Set Publicidad
+     *
+     * @param string $publicidad
+     * @return Producto
+     */
+    public function setPublicidad($publicidad)
+    {
+        $this->Publicidad = $publicidad;
+
+        return $this;
+    }
+
+    /**
+     * Get Publicidad
+     *
+     * @return string 
+     */
+    public function getPublicidad()
+    {
+        return $this->Publicidad;
+    }
+
+    /**
+     * Set Empaque
+     *
+     * @param string $empaque
+     * @return Producto
+     */
+    public function setEmpaque($empaque)
+    {
+        $this->Empaque = $empaque;
+
+        return $this;
+    }
+
+    /**
+     * Get Empaque
+     *
+     * @return string
+     */
+    public function getEmpaque()
+    {
+        return $this->Empaque;
+    }
+
+    /**
+     * Set Caracteristicas
+     *
+     * @param string $caracteristicas
+     * @return Producto
+     */
+    public function setCaracteristicas($caracteristicas)
+    {
+        $this->Caracteristicas = $caracteristicas;
+
+        return $this;
+    }
+
+    /**
+     * Get Caracteristicas
+     *
+     * @return string 
+     */
+    public function getCaracteristicas()
+    {
+        return $this->Caracteristicas;
+    }
+
+    /**
+     * Set Descripcion
+     *
+     * @param string $descripcion
+     * @return Producto
+     */
+    public function setDescripcion($descripcion)
+    {
+        $this->Descripcion = $descripcion;
+
+        return $this;
+    }
+
+    /**
+     * Get Descripcion
+     *
+     * @return string 
+     */
+    public function getDescripcion()
+    {
+        return $this->Descripcion;
+    }
 }

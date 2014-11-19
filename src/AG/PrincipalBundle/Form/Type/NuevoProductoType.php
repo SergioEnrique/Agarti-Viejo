@@ -30,9 +30,18 @@ class NuevoProductoType extends AbstractType
                 'multiple' => false,
                 'required' => true,
                 'mapped'   => false));
+        $builder->add('Descripcion', 'textarea', array('required' => false));
         $builder->add('Precio', 'number');
-        $builder->add('Medidas', 'text');
-        $builder->add('Contenido', 'textarea');
+        $builder->add('PrecioEspecial', 'text', array('required' => false));
+        $builder->add('Medidas', 'text', array('required' => false));
+        $builder->add('Interior', 'text', array('required' => false));
+        $builder->add('Exterior', 'text', array('required' => false));
+        $builder->add('Colores', 'text', array('required' => false));
+        $builder->add('Paginas', 'number', array('required' => false));
+        $builder->add('Encuadernacion', 'text', array('required' => false));
+        $builder->add('Publicidad', 'text', array('required' => false));
+        $builder->add('Empaque', 'text', array('required' => false));
+        $builder->add('Caracteristicas', 'textarea', array('required' => false));
         $builder->add('Foto1', 'file', array('mapped' => false, 'required' => false));
         $builder->add('Foto2', 'file', array('mapped' => false, 'required' => false));
         $builder->add('Foto3', 'file', array('mapped' => false, 'required' => false));

@@ -7,3 +7,6 @@ ag_principal_catalgo_admin:
 ag_principal_nuevo_producto:
     pattern:  /admin/nuevoproducto
     defaults: { _controller: AGPrincipalBundle:Default:nuevoProducto }
+ag_principal_nuevo_pedido:
+    pattern:  /vendedor/nuevopedido
+    defaults: { _controller: AGPrincipalBundle:Default:nuevoPedido }

@@ -10,13 +10,15 @@ security:
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/admin$, roles: ROLE_ADMIN }
+        - { path: ^/vendedor, roles: ROLE_VENDEDOR }
+        - { path: ^/vendedor$, roles: ROLE_VENDEDOR }
 
     providers:
         in_memory:
             memory:
                 users:
                     Valerio:  { password: 987410, roles: 'ROLE_ADMIN' }
-                    otro: { password: kitten, roles: 'ROLE_USER' }
+                    Vendedor: { password: vendedor, roles: 'ROLE_VENDEDOR' }
 
     encoders:
         Symfony\Component\Security\Core\User\User: plaintext
