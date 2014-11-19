@@ -19,6 +19,24 @@ class DefaultController extends Controller
         return $this->render('AGPrincipalBundle:Default:index.html.twig');
     }
 
+    public function vistaCategoriaAction($categoriaSlug)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        // Obteniendo Categoría
+        $categoryEntity = $em->getRepository("AGPrincipalBundle:Category");
+        $categoryObject = $categoryEntity->findOneBy(array("slug" => $categoriaSlug));
+
+        // Obteniendo Productos
+        $productoEntity = $em->getRepository("AGPrincipalBundle:Producto");
+        $productosArrayObjects =  $productoEntity->findBy(array("category" => $categoryObject));
+        
+        return $this->render('AGPrincipalBundle:Default:category.html.twig', array(
+            "category" => $categoryObject,
+            "productos" => $productosArrayObjects,
+        ));
+    }
+
     public function catalogoAdminAction()
     {
         return $this->render('AGPrincipalBundle:Default:catalogoAdmin.html.twig');
@@ -44,6 +62,9 @@ class DefaultController extends Controller
                     // Obtener categoría
                     $categoryEntity = $em->getRepository('AGPrincipalBundle:Category');
                     $category = $categoryEntity->findOneById($formProducto['Categoria']->getData());
+
+                    // Persistir nuevo Producto
+                    $em->persist($nuevoProducto);
 
                     // Obtener fotos y agregarlas a la base de datos
                     if($formProducto["Foto1"]->getData())
@@ -75,9 +96,14 @@ class DefaultController extends Controller
                     $nuevoProducto->setCategory($category);
                     $nuevoProducto->setSlug($productoService->getSlug($nuevoProducto->getNombre()));
 
-                    // Persistir un nuevo producto y sus fotos
-                	$em->persist($nuevoProducto);
+                    // Subir un nuevo producto y sus fotos
                     $em->flush();
+
+                    // Se manda un mensaje de travesura realizada
+                    $this->get('session')->getFlashBag()->set(
+                        'notice',
+                        'El nuevo producto ('.$nuevoProducto->getNombre().') ha sido agregado a la base de datos.'
+                    );
 
                     // Se hace un nuevo formulario
                     $nuevoProducto = new Producto();

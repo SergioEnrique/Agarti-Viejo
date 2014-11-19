@@ -97,4 +97,60 @@ class Category
     {
         return $this->productos;
     }
+    /**
+     * @var string
+     */
+    private $slug;
+
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Category
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+    /**
+     * @var string
+     */
+    private $description;
+
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Category
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
 }

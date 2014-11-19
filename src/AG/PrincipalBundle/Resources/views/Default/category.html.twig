@@ -1,0 +1,23 @@
+{% extends '::principal.html.twig' %}
+
+{% block contenido %}
+
+	<div style="padding:5px 25px;">
+		
+		<div class="row">
+			<h1 style="color: rgb(13, 85, 107);">{{category.name}}</h1>
+		</div>
+		<div class="row">
+			<p>{{category.description}}</p>
+		</div>
+
+		{% for producto in productos %}
+			<div class="row" style="border-top: solid 1px rgb(226, 226, 226);margin-top: 10px;padding-top: 17px;">
+				{{producto.Nombre}}:
+				<img src="{{asset(producto.fotos.0.getWebPath)}}" height="200">
+			</div>
+		{% endfor %}
+
+	</div>
+
+{% endblock %}

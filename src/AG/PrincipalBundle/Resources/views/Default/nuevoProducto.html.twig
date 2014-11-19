@@ -2,9 +2,21 @@
 
 {% block contenido %}
 
-	<h4>Formulario de Nuevo producto</h4>
+	
+	{% for flashMessage in app.session.flashbag.get('notice') %}
+		<br />
+		<div class="row">
+		    <div class="alert alert-info">
+		        {{ flashMessage }}
+		    </div>
+		</div>
+	{% endfor %}
+		
+	<div class="row">
+		<h4>Formulario de Nuevo producto</h4>
 
-    {{ form_start(formProducto) }}
-    {{ form_end(formProducto) }}
+	    {{ form_start(formProducto) }}
+	    {{ form_end(formProducto) }}
+	</div>
 
 {% endblock %}
