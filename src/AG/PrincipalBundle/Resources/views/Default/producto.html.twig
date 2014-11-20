@@ -30,41 +30,33 @@
 		</div>
 	</div>
 	<div class="row" style="padding-top: 30px;">
-		<div class="col-sm-5">
-			<img class="cloudzoom" id="zoom1" src="{{asset(producto.fotos.0.getWebPath)}}" style="max-width:100%;" 
-				data-cloudzoom="zoomSizeMode:'image', autoInside: 550" />
+		<div class="col-sm-5 text-center">
 
-			<br/>
-			<img class='cloudzoom-gallery' src="images/thumbs/image1.jpg"
-				data-cloudzoom="useZoom: '.cloudzoom', image: 'images/small/image1.jpg', zoomImage: 'images/large/image1.jpg' " >
-			<img class='cloudzoom-gallery' src="images/thumbs/image2.jpg"
-				data-cloudzoom="useZoom: '.cloudzoom', image: 'images/small/image2.jpg', zoomImage: 'images/large/image2.jpg' " >
-			<img class='cloudzoom-gallery' src="images/thumbs/image3.jpg"
-				data-cloudzoom="useZoom: '.cloudzoom', image: 'images/small/image3.jpg', zoomImage: 'images/large/image3.jpg' " >
+			<div class="row">
+				<img class="cloudzoom" id="zoom1" src="{{asset(producto.fotos.0.getWebPath)}}" style="max-width:100%; max-height:400px" 
+					data-cloudzoom="zoomSizeMode:'image', autoInside: 550" />
+			</div>
 
+			<div class="row" style="padding: 25px 0">
+				{% for foto in producto.fotos %} {# thumbs, small, large en ese orden las imagenes de abajo, hay que cambiarlas #}
+					<img class='cloudzoom-gallery' src="{{asset(foto.getWebPath)}}" style="max-width: 100px" 
+						data-cloudzoom="useZoom: '.cloudzoom', image: '{{asset(foto.getWebPath)}}', zoomImage: '{{asset(foto.getWebPath)}}' " >
+				{% endfor %}
+			</div>
 
 		</div>
 		<div class="col-sm-7 text-right">
-			<span>Clave:</span>
-Medidas: 6.8x13.5 cm
-
-Interior:Papel bond blanco de 75 grs. Impresa a una tinta 
-Funda: Curpiel cosida
-Colores:	Negro, azul marino, vino y miel
-Páginas:	128 páginas. 
-Encuadernación:	Arillo metálico (Wire-o)
-
-Contenido:
-Dos idiomas: español e inglés
-Protector de PVC transparente
-Datos personales
-Directorio telefónico
-Días festivos
-Calendario anual 2013, 2014
-Teléfonos de emergencia
-Claves de larga distancia nacional, EEUU y Canadá
-Horario Mundial
-Tabla de Equivalencias
+			<span><b>Clave:</b> {{producto.clave}}</span><br />
+			{% if producto.Medidas is defined %} <span><b>Medidas:</b> {{producto.Medidas}}</span><br />{% endif %}
+			{% if producto.Interior is defined %} <span><b>Interior:</b> {{producto.Interior}}</span><br />{% endif %}
+			{% if producto.Exterior is defined %} <span><b>Exterior:</b> {{producto.Exterior}}</span><br />{% endif %}
+			{% if producto.Colores is defined %} <span><b>Colores:</b> {{producto.Colores}}</span><br />{% endif %}
+			{% if producto.Paginas is defined %} <span><b>Páginas:</b> {{producto.Paginas}} páginas</span><br />{% endif %}
+			{% if producto.Encuadernacion is defined %} <span><b>Encuadernación:</b> {{producto.Encuadernacion}}</span><br />{% endif %}
+			{% if producto.Publicidad is defined %} <span><b>Publicidad disponible:</b> {{producto.Publicidad}}</span><br />{% endif %}
+			{% if producto.Empaque is defined %} <span><b>Empaque:</b> {{producto.Empaque}}</span><br />{% endif %}
+			{% if producto.Caracteristicas is defined %} <br /><span><b>Características:</b> {{producto.Caracteristicas}}</span>{% endif %}
+			{% if producto.Medidas is defined %} <span><b>Medidas:</b> {{producto.Medidas}}</span><br />{% endif %}
 		</div>
 	</div>
 
