@@ -37,6 +37,56 @@ class DefaultController extends Controller
         ));
     }
 
+    public function vistaProductoAction($categoriaSlug, $productoSlug)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        // Repositorio de Productos
+        $productosRepository = $em->getRepository("AGPrincipalBundle:Producto");
+
+        // Buscar producto
+        $productoObject = $productosRepository->findOneBy(array("Slug" => $productoSlug));
+
+        // Repositorio de categorías
+        $categoriesRepository = $em->getRepository("AGPrincipalBundle:Category");
+
+        // Buscar categoría
+        $categoryObject = $categoriesRepository->findOneBy(array("slug" => $categoriaSlug));
+
+        // Obtener Collection de productos de la categoría
+        $productosCollectionObjects = $categoryObject->getProductos();
+
+        // Obtener key del producto
+        $productoKey = $productosCollectionObjects->indexOf($productoObject);
+
+        // Obtener cantidad de productos
+        $cantidadProductos = $productosCollectionObjects->count();
+
+        // Obtener la key del siguiente producto
+        $nextProductKey = $productoKey + 1;
+        if($nextProductKey == $cantidadProductos) $nextProductKey = 0;
+
+        // Obtener la key del producto pasado
+        $pastProductKey = $productoKey - 1;
+        if($pastProductKey < 0) $pastProductKey = $cantidadProductos - 1;
+
+        // Obtener el objeto producto siguiente
+        $nextProductObject = $productosCollectionObjects->get($nextProductKey);
+
+        // Obtener el objeto producto pasado
+        $pastProductObject = $productosCollectionObjects->get($pastProductKey);
+
+        // Crear los links de los productos siguiente y pasado
+        $nextProductLink = $this->generateURL('ag_principal_productos', array('categoriaSlug' => $categoriaSlug, 'productoSlug' => $nextProductObject->getSlug()));
+        $pastProductLink = $this->generateURL('ag_principal_productos', array('categoriaSlug' => $categoriaSlug, 'productoSlug' => $pastProductObject->getSlug()));
+
+        return $this->render("AGPrincipalBundle:Default:producto.html.twig", array(
+            "producto" => $productoObject,
+            "nextProductLink" => $nextProductLink,
+            "pastProductLink" => $pastProductLink,
+        ));
+    }
+
     public function catalogoAdminAction()
     {
         return $this->render('AGPrincipalBundle:Default:catalogoAdmin.html.twig');

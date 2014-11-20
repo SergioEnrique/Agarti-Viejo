@@ -1,23 +1,42 @@
 {% extends '::principal.html.twig' %}
 
+{% block stylesheets %}
+	{{parent()}}
+	<style type="text/css">
+		.nolinkdecoration:hover{
+			text-decoration: none;
+		}
+	</style>
+{% endblock %}
+
 {% block contenido %}
-
-	<div style="padding:5px 25px;">
 		
-		<div class="row">
-			<h1 style="color: rgb(13, 85, 107);">{{category.name}}</h1>
-		</div>
-		<div class="row">
-			<p>{{category.description}}</p>
-		</div>
-
-		{% for producto in productos %}
-			<div class="row" style="border-top: solid 1px rgb(226, 226, 226);margin-top: 10px;padding-top: 17px;">
-				{{producto.Nombre}}:
-				<img src="{{asset(producto.fotos.0.getWebPath(producto.id))}}" height="200">
-			</div>
-		{% endfor %}
-
+	<div class="row">
+		<h1 style="color: rgb(13, 85, 107);">{{category.name}}</h1>
 	</div>
+	<div class="row">
+		<p>{{category.description}}</p>
+	</div>
+
+	{% for producto in productos %}
+		<div class="row" style="border-top: solid 1px rgb(226, 226, 226);margin-top: 10px;padding-top: 17px;">
+			<div class="col-sm-3">
+				<a href="{{url('ag_principal_productos', {categoriaSlug:category.slug, productoSlug:producto.slug})}}" class="nolinkdecoration">
+					<img src="{{asset(producto.fotos.0.getWebPath(producto.id))}}" style="max-width:100%;">
+				</a>				
+			</div>
+			<div class="col-sm-6">
+				<a href="{{url('ag_principal_productos', {categoriaSlug:category.slug, productoSlug:producto.slug})}}" class="nolinkdecoration">
+					<h2 style="color: rgb(6, 123, 150); margin-top: 0px; font-size: 25px; margin-bottom:2px;">{{producto.nombre}}</h2>
+				</a>
+				<span style="font-size: 17px; color: rgb(93, 100, 108);">Clave: {{producto.clave}}</span>
+				<br />
+				<span>Medidas: {{producto.medidas}}</span>
+			</div>
+			<div class="col-sm-3">
+				<p>{{producto.descripcion}}</p>
+			</div>
+		</div>
+	{% endfor %}
 
 {% endblock %}

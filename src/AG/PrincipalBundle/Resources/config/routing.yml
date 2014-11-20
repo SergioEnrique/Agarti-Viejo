@@ -1,9 +1,6 @@
 ag_principal_homepage:
     pattern:  /
     defaults: { _controller: AGPrincipalBundle:Default:index }
-ag_principal_categorias:
-    pattern:  /{categoriaSlug}
-    defaults: { _controller: AGPrincipalBundle:Default:vistaCategoria }
 ag_principal_catalgo_admin:
     pattern:  /admin/catalogo
     defaults: { _controller: AGPrincipalBundle:Default:catalogoAdmin }
@@ -13,3 +10,9 @@ ag_principal_nuevo_producto:
 ag_principal_nuevo_pedido:
     pattern:  /vendedor/nuevopedido
     defaults: { _controller: AGPrincipalBundle:Default:nuevoPedido }
+ag_principal_categorias:
+    pattern:  /{categoriaSlug}
+    defaults: { _controller: AGPrincipalBundle:Default:vistaCategoria }
+ag_principal_productos:
+    pattern:  /{categoriaSlug}/{productoSlug}
+    defaults: { _controller: AGPrincipalBundle:Default:vistaProducto }
