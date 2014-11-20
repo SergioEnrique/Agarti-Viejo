@@ -63,13 +63,21 @@ class DefaultController extends Controller
                     $categoryEntity = $em->getRepository('AGPrincipalBundle:Category');
                     $category = $categoryEntity->findOneById($formProducto['Categoria']->getData());
 
+                    // Settear Categoría y Slug
+                    $nuevoProducto->setCategory($category);
+                    $nuevoProducto->setSlug($productoService->getSlug($nuevoProducto->getNombre()));
+
+                    // Persistir el nuevo producto y sus fotos
+                    $em->persist($nuevoProducto);
+                    $em->flush();
+
                     // Obtener fotos y agregarlas a la base de datos
                     if($formProducto["Foto1"]->getData())
                     {
                         $nuevaFoto1 = new Foto();
                         $nuevaFoto1->setProducto($nuevoProducto);
                         $nuevaFoto1->setFile($formProducto["Foto1"]->getData());
-                        $nuevaFoto1->upload($nuevoProducto->getId());
+                        $nuevaFoto1->upload();
                         $em->persist($nuevaFoto1);
                     }
                     if($formProducto["Foto2"]->getData())
@@ -77,7 +85,7 @@ class DefaultController extends Controller
                         $nuevaFoto2 = new Foto();
                         $nuevaFoto2->setProducto($nuevoProducto);
                         $nuevaFoto2->setFile($formProducto["Foto2"]->getData());
-                        $nuevaFoto2->upload($nuevoProducto->getId());
+                        $nuevaFoto2->upload();
                         $em->persist($nuevaFoto2);
                     }
                     if($formProducto["Foto3"]->getData())
@@ -85,16 +93,10 @@ class DefaultController extends Controller
                         $nuevaFoto3 = new Foto();
                         $nuevaFoto3->setProducto($nuevoProducto);
                         $nuevaFoto3->setFile($formProducto["Foto3"]->getData());
-                        $nuevaFoto3->upload($nuevoProducto->getId());
+                        $nuevaFoto3->upload();
                         $em->persist($nuevaFoto3);
                     }
 
-                    // Settear Categoría y Slug
-                    $nuevoProducto->setCategory($category);
-                    $nuevoProducto->setSlug($productoService->getSlug($nuevoProducto->getNombre()));
-
-                    // Persistir el nuevo producto y sus fotos
-                    $em->persist($nuevoProducto);
                     $em->flush();
 
                     // Se manda un mensaje de travesura realizada

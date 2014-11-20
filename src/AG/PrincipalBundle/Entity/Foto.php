@@ -1,10 +1,7 @@
 <?php
-
 namespace AG\PrincipalBundle\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-
 /**
  * Foto
  */
@@ -14,23 +11,18 @@ class Foto
      * @var integer
      */
     private $id;
-
     /**
      * @var integer
      */
     private $productoID;
-
     /**
      * @var string
      */
     private $path;
-
     /**
      * @var \AG\PrincipalBundle\Entity\Producto
      */
     private $producto;
-
-
     /**
      * Get id
      *
@@ -40,7 +32,6 @@ class Foto
     {
         return $this->id;
     }
-
     /**
      * Set productoID
      *
@@ -50,27 +41,17 @@ class Foto
     public function setProductoID($productoID)
     {
         $this->productoID = $productoID;
-
         return $this;
     }
-
     /**
      * Get productoID
      *
      * @return integer 
      */
-    public function getProductoID($productoId)
+    public function getProductoID()
     {
-        if (!$productoId)
-        {
-            return $this->producto->getId();
-        }
-        else
-        {
-            return $productoId;
-        }
+        return $this->productoID;
     }
-
     /**
      * Set path
      *
@@ -80,10 +61,8 @@ class Foto
     public function setPath($path)
     {
         $this->path = $path;
-
         return $this;
     }
-
     /**
      * Get path
      *
@@ -93,7 +72,6 @@ class Foto
     {
         return $this->path;
     }
-
     /**
      * Set producto
      *
@@ -103,10 +81,8 @@ class Foto
     public function setProducto(\AG\PrincipalBundle\Entity\Producto $producto = null)
     {
         $this->producto = $producto;
-
         return $this;
     }
-
     /**
      * Get producto
      *
@@ -116,40 +92,34 @@ class Foto
     {
         return $this->producto;
     }
-
-    public function getAbsolutePath($productoId)
+    public function getAbsolutePath()
     {
         return null === $this->path
             ? null
-            : $this->getUploadRootDir($productoId).'/'.$this->path;
+            : $this->getUploadRootDir().'/'.$this->path;
     }
-
-    public function getWebPath($productoId)
+    public function getWebPath()
     {
         return null === $this->path
             ? null
-            : $this->getUploadDir($productoId).'/'.$this->path;
+            : $this->getUploadDir().'/'.$this->path;
     }
-
-    protected function getUploadRootDir($productoId)
+    protected function getUploadRootDir()
     {
         // the absolute directory path where uploaded
         // documents should be saved
-        return __DIR__.'/../../../../web/'.$this->getUploadDir($productoId);
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
     }
-
-    protected function getUploadDir($productoId)
+    protected function getUploadDir()
     {
         // get rid of the __DIR__ so it doesn't screw up
         // when displaying uploaded doc/image in the view.
-        return 'uploads/productos/'.$this->getProductoID($productoId);
+        return 'uploads/productos/'.$this->producto->getId();
     }
-
     /**
      * 
      */
     private $file;
-
     /**
      * Sets file.
      *
@@ -159,7 +129,6 @@ class Foto
     {
         $this->file = $file;
     }
-
     /**
      * Get file.
      *
@@ -169,27 +138,22 @@ class Foto
     {
         return $this->file;
     }
-
-    public function upload($productoId)
+    public function upload()
     {
         // the file property can be empty if the field is not required
         if (null === $this->getFile()) {
             return;
         }
-
         // use the original file name here but you should
         // sanitize it at least to avoid any security issues
-
         // move takes the target directory and then the
         // target filename to move to
         $this->getFile()->move(
-            $this->getUploadRootDir($productoId),
+            $this->getUploadRootDir(),
             $this->getFile()->getClientOriginalName()
         );
-
         // set the path property to the filename where you've saved the file
         $this->path = $this->getFile()->getClientOriginalName();
-
         // clean up the file property as you won't need it anymore
         $this->file = null;
     }
