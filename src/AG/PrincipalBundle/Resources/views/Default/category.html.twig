@@ -22,7 +22,7 @@
 		<div class="row" style="border-top: solid 1px rgb(226, 226, 226);margin-top: 10px;padding-top: 17px;">
 			<div class="col-sm-3">
 				<a href="{{url('ag_principal_productos', {categoriaSlug:category.slug, productoSlug:producto.slug})}}" class="nolinkdecoration">
-					<img src="{{asset(producto.fotos.0.getWebPath(producto.id))}}" style="max-width:100%;">
+					<img src="{{asset(producto.fotos.0.getWebPath)}}" style="max-width:100%;">
 				</a>				
 			</div>
 			<div class="col-sm-6">
