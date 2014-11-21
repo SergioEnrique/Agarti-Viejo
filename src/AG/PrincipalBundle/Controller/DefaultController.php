@@ -24,6 +24,16 @@ class DefaultController extends Controller
         return $this->render('AGPrincipalBundle:Default:conocenos.html.twig');
     }
 
+    public function serviciosAction()
+    {
+        return $this->render('AGPrincipalBundle:Default:servicios.html.twig');
+    }
+
+    public function contactoAction()
+    {
+        return $this->render('AGPrincipalBundle:Default:contacto.html.twig');
+    }
+
     public function vistaCategoriaAction($categoriaSlug)
     {
         $em = $this->getDoctrine()->getManager();
@@ -92,10 +102,16 @@ class DefaultController extends Controller
         ));
     }
 
+    public function panelControlAction()
+    {
+        return $this->render('AGPrincipalBundle:Default:panelControl.html.twig');
+    }
+
     public function catalogoAdminAction()
     {
         return $this->render('AGPrincipalBundle:Default:catalogoAdmin.html.twig');
     }
+
     public function nuevoProductoAction(Request $request)
     {
     	$em = $this->getDoctrine()->getManager();

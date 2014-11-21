@@ -1,6 +1,9 @@
 ag_principal_homepage:
     pattern:  /
     defaults: { _controller: AGPrincipalBundle:Default:index }
+ag_principal_panel_control:
+    pattern:  /panel-control
+    defaults: { _controller: AGPrincipalBundle:Default:panelControl }
 ag_principal_catalgo_admin:
     pattern:  /admin/catalogo
     defaults: { _controller: AGPrincipalBundle:Default:catalogoAdmin }
@@ -13,6 +16,12 @@ ag_principal_nuevo_pedido:
 ag_principal_conocenos:
     pattern:  /informacion-sobre-agarti
     defaults: { _controller: AGPrincipalBundle:Default:conocenos }
+ag_principal_servicios:
+    pattern:  /servicios-de-personalizacion
+    defaults: { _controller: AGPrincipalBundle:Default:servicios }
+ag_principal_contacto:
+    pattern:  /contacto
+    defaults: { _controller: AGPrincipalBundle:Default:contacto }
 ag_principal_categorias:
     pattern:  /{categoriaSlug}
     defaults: { _controller: AGPrincipalBundle:Default:vistaCategoria }
