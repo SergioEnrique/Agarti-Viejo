@@ -3,6 +3,11 @@
 {% block stylesheets %}
 	{{parent()}}
 	<link rel="stylesheet" type="text/css" href="{{asset('css/cloudzoom.css')}}" />
+	<style type="text/css">
+		.hoverhand:hover{
+			cursor:pointer;
+		}
+	</style>
 {% endblock %}
 
 {% block contenido %}
@@ -18,7 +23,20 @@
 			</a>
 		</div>
 		<div class="col-sm-4 text-center">
-			<a href="{{pastProductLink}}">Anterior</a> - <a href="{{nextProductLink}}">Siguiente</a>
+			<div class="btn-group" role="group" aria-label="...">
+				<a class="btn btn-default" href="{{pastProductLink}}">Anterior</a>
+				{#<div class="btn-group" role="group">
+					<a href="{{url('ag_principal_categorias',{categoriaSlug: producto.getCategory.slug})}}" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+						{{producto.getCategory.name}}
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu" role="menu">
+						<li><a href="#">Dropdown link</a></li>
+						<li><a href="#">Dropdown link</a></li>
+					</ul>
+				</div>#}
+				<a class="btn btn-default" href="{{nextProductLink}}">Siguiente</a>
+			</div>
 		</div>
 		<div class="col-sm-4 text-right">
 			Clave: {{producto.clave}}
@@ -39,24 +57,23 @@
 
 			<div class="row" style="padding: 25px 0">
 				{% for foto in producto.fotos %} {# thumbs, small, large en ese orden las imagenes de abajo, hay que cambiarlas #}
-					<img class='cloudzoom-gallery' src="{{asset(foto.getWebPath)}}" style="max-width: 100px" 
+					<img class='cloudzoom-gallery hoverhand' src="{{asset(foto.getWebPath)}}" style="max-width: 100px" 
 						data-cloudzoom="useZoom: '.cloudzoom', image: '{{asset(foto.getWebPath)}}', zoomImage: '{{asset(foto.getWebPath)}}' " >
 				{% endfor %}
 			</div>
 
 		</div>
-		<div class="col-sm-7 text-right">
+		<div class="col-sm-7" style="padding-left:50px">
 			<span><b>Clave:</b> {{producto.clave}}</span><br />
-			{% if producto.Medidas is defined %} <span><b>Medidas:</b> {{producto.Medidas}}</span><br />{% endif %}
-			{% if producto.Interior is defined %} <span><b>Interior:</b> {{producto.Interior}}</span><br />{% endif %}
-			{% if producto.Exterior is defined %} <span><b>Exterior:</b> {{producto.Exterior}}</span><br />{% endif %}
-			{% if producto.Colores is defined %} <span><b>Colores:</b> {{producto.Colores}}</span><br />{% endif %}
-			{% if producto.Paginas is defined %} <span><b>Páginas:</b> {{producto.Paginas}} páginas</span><br />{% endif %}
-			{% if producto.Encuadernacion is defined %} <span><b>Encuadernación:</b> {{producto.Encuadernacion}}</span><br />{% endif %}
-			{% if producto.Publicidad is defined %} <span><b>Publicidad disponible:</b> {{producto.Publicidad}}</span><br />{% endif %}
-			{% if producto.Empaque is defined %} <span><b>Empaque:</b> {{producto.Empaque}}</span><br />{% endif %}
-			{% if producto.Caracteristicas is defined %} <br /><span><b>Características:</b> {{producto.Caracteristicas}}</span>{% endif %}
-			{% if producto.Medidas is defined %} <span><b>Medidas:</b> {{producto.Medidas}}</span><br />{% endif %}
+			{% if producto.Medidas is not null %} <span><b>Medidas:</b> {{producto.Medidas}}</span><br />{% endif %}
+			{% if producto.Interior is not null %} <span><b>Interior:</b> {{producto.Interior}}</span><br />{% endif %}
+			{% if producto.Exterior is not null %} <span><b>Exterior:</b> {{producto.Exterior}}</span><br />{% endif %}
+			{% if producto.Colores is not null %} <span><b>Colores:</b> {{producto.Colores}}</span><br />{% endif %}
+			{% if producto.Paginas is not null %} <span><b>Páginas:</b> {{producto.Paginas}} páginas</span><br />{% endif %}
+			{% if producto.Encuadernacion is not null %} <span><b>Encuadernación:</b> {{producto.Encuadernacion}}</span><br />{% endif %}
+			{% if producto.Publicidad is not null %} <span><b>Publicidad disponible:</b> {{producto.Publicidad}}</span><br />{% endif %}
+			{% if producto.Empaque is not null %} <span><b>Empaque:</b> {{producto.Empaque}}</span><br />{% endif %}
+			{% if producto.Caracteristicas is not null %} <br /><span><b>Características:</b> {{producto.Caracteristicas}}</span>{% endif %}
 		</div>
 	</div>
 
