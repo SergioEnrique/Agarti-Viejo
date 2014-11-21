@@ -12,6 +12,15 @@ ag_principal_catalgo_admin:
 ag_principal_nuevo_producto:
     pattern:  /admin/nuevoproducto
     defaults: { _controller: AGPrincipalBundle:Default:nuevoProducto }
+ag_principal_borrar_producto:
+    pattern:  /admin/borrar-producto/{productoId}
+    defaults: { _controller: AGPrincipalBundle:Default:borrarProducto }
+ag_principal_editar_producto:
+    pattern:  /admin/editar-producto/{productoId}
+    defaults: { _controller: AGPrincipalBundle:Default:editarProducto }
+ag_principal_borrar_foto:
+    pattern:  /admin/borrar-foto/{fotoId}
+    defaults: { _controller: AGPrincipalBundle:Default:borrarFoto }
 ag_principal_nuevo_pedido:
     pattern:  /vendedor/nuevopedido
     defaults: { _controller: AGPrincipalBundle:Default:nuevoPedido }

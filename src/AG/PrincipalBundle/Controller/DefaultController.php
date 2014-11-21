@@ -109,7 +109,138 @@ class DefaultController extends Controller
 
     public function catalogoAdminAction()
     {
-        return $this->render('AGPrincipalBundle:Default:catalogoAdmin.html.twig');
+        $em = $this->getDoctrine()->getManager();
+
+        $productosRepository = $em->getRepository('AGPrincipalBundle:Producto');
+        $productosCollection = $productosRepository->findAll();
+
+        return $this->render('AGPrincipalBundle:Default:catalogoAdmin.html.twig', array(
+            "productos" =>  $productosCollection,
+        ));
+    }
+
+    public function borrarProductoAction($productoId)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $productosRepository = $em->getRepository('AGPrincipalBundle:Producto');
+        $productoObject = $productosRepository->find($productoId);
+
+        $fotosRepository = $em->getRepository('AGPrincipalBundle:Foto');
+        $fotosCollection = $fotosRepository->findBy(array('productoID' => $productoId));
+
+        foreach ($fotosCollection as $key => $fotoObject) {
+            $em->remove($fotoObject);
+        }
+
+        $em->remove($productoObject);
+        $em->flush();
+
+        // Se manda un mensaje de travesura realizada
+        $this->get('session')->getFlashBag()->set(
+            'notice',
+            'El producto ('.$productoObject->getNombre().') ha sido eliminado de la base de datos.'
+        );
+
+        return $this->redirect($this->generateUrl('ag_principal_catalgo_admin'));
+    }
+
+    public function editarProductoAction(Request $request, $productoId)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $productosRepository = $em->getRepository('AGPrincipalBundle:Producto');
+        $productoObject = $productosRepository->find($productoId);
+
+        $formProducto = $this->createForm(new NuevoProductoType(), $productoObject);
+
+        // Recuperando formularios
+        if('POST' === $request->getMethod()) {
+            if($request->request->has($formProducto->getName())) {
+
+                // Cargar el formulario contestado y procesarlo si es correcto
+                $formProducto->handleRequest($request);
+                if($formProducto->isValid())
+                {
+                    // Servicio para productos
+                    $productoService = $this->get('producto_service');
+
+                    // Obtener categoría
+                    $categoryEntity = $em->getRepository('AGPrincipalBundle:Category');
+                    $category = $categoryEntity->findOneById($formProducto['categoryID']->getData());
+
+                    // Settear Categoría y Slug
+                    $productoObject->setCategory($category);
+                    $productoObject->setSlug($productoService->getSlug($productoObject->getNombre()));
+
+                    // Persistir el nuevo producto y sus fotos
+                    $em->persist($productoObject);
+                    $em->flush();
+
+                    // Obtener fotos y agregarlas a la base de datos
+                    if($formProducto["Foto1"]->getData())
+                    {
+                        $nuevaFoto1 = new Foto();
+                        $nuevaFoto1->setProducto($productoObject);
+                        $nuevaFoto1->setFile($formProducto["Foto1"]->getData());
+                        $nuevaFoto1->upload();
+                        $em->persist($nuevaFoto1);
+                    }
+                    if($formProducto["Foto2"]->getData())
+                    {
+                        $nuevaFoto2 = new Foto();
+                        $nuevaFoto2->setProducto($productoObject);
+                        $nuevaFoto2->setFile($formProducto["Foto2"]->getData());
+                        $nuevaFoto2->upload();
+                        $em->persist($nuevaFoto2);
+                    }
+                    if($formProducto["Foto3"]->getData())
+                    {
+                        $nuevaFoto3 = new Foto();
+                        $nuevaFoto3->setProducto($productoObject);
+                        $nuevaFoto3->setFile($formProducto["Foto3"]->getData());
+                        $nuevaFoto3->upload();
+                        $em->persist($nuevaFoto3);
+                    }
+
+                    $em->flush();
+
+                    // Se manda un mensaje de travesura realizada
+                    $this->get('session')->getFlashBag()->set(
+                        'notice',
+                        'El producto ('.$productoObject->getNombre().') se editó con éxito en la base de datos.'
+                    );
+
+                    // Se redirecciona a la página de lista de productos
+                    return $this->redirect($this->generateUrl('ag_principal_catalgo_admin'));
+                }
+            }
+        }
+
+        return $this->render('AGPrincipalBundle:Default:nuevoProducto.html.twig', array(
+            'formProducto' => $formProducto->createView(),
+            'fotos' => $productoObject->getFotos(),
+        ));
+    }
+
+    public function borrarFotoAction($fotoId)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $fotosRepository = $em->getRepository('AGPrincipalBundle:Foto');
+        $fotoObject = $fotosRepository->find($fotoId);
+
+        $productoId = $fotoObject->getProductoID();
+
+        $em->remove($fotoObject);
+        $em->flush();
+
+        // Se manda un mensaje de travesura realizada
+        $this->get('session')->getFlashBag()->set(
+            'notice',
+            'Foto eliminada.'
+        );
+
+        return $this->redirect($this->generateUrl('ag_principal_editar_producto', array('productoId' => $productoId)));
     }
 
     public function nuevoProductoAction(Request $request)
@@ -132,7 +263,7 @@ class DefaultController extends Controller
 
                     // Obtener categoría
                     $categoryEntity = $em->getRepository('AGPrincipalBundle:Category');
-                    $category = $categoryEntity->findOneById($formProducto['Categoria']->getData());
+                    $category = $categoryEntity->findOneById($formProducto['categoryID']->getData());
 
                     // Settear Categoría y Slug
                     $nuevoProducto->setCategory($category);

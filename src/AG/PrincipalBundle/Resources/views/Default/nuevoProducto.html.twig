@@ -11,7 +11,21 @@
 {% endblock %}
 
 {% block contenido %}
-    <h4>Agregar un nuevo producto al sitio</h4>
-    {{ form_start(formProducto) }}
-	{{ form_end(formProducto) }}
+
+	<div class="row">
+		<h4>Agregar o editar producto</h4>
+	    {{ form_start(formProducto) }}
+		{{ form_end(formProducto) }}
+	</div>
+
+	{% if fotos is defined and fotos is not empty %}
+		<div class="row" style="margin-top: 55px; text-align: right;">
+			<span>Clic en la foto para eliminarla:</span><br />
+			{% for foto in fotos %}
+				<a href="{{url('ag_principal_borrar_foto', {fotoId: foto.id})}}"><img src="{{asset(foto.getWebPath)}}" style="width:100px;"></a>
+			{% endfor %}
+		</div>
+	{% endif %}
+    
+
 {% endblock %}

@@ -14,7 +14,7 @@ class NuevoProductoType extends AbstractType
     {
         $builder->add('Nombre', 'text');
         $builder->add('clave', 'text');
-        $builder->add('Categoria', 'choice', array(
+        $builder->add('categoryID', 'choice', array(
                 'choices' => array(
                     '1'   => 'Agendas de Bolsillo',
                     '2'   => 'Agendas de Escritorio',
@@ -28,8 +28,7 @@ class NuevoProductoType extends AbstractType
                     '10'  => 'Micas y Porta Gafetes',
                     ),
                 'multiple' => false,
-                'required' => true,
-                'mapped'   => false));
+                'required' => true));
         $builder->add('Descripcion', 'textarea', array('required' => false));
         $builder->add('Precio', 'number');
         $builder->add('PrecioEspecial', 'text', array('required' => false));
