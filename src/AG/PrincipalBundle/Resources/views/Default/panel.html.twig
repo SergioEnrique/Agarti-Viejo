@@ -1,0 +1,56 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    {% stylesheets
+        '%kernel.root_dir%/../vendor/tympanus/OriginalHoverEffects/css/style_common.css'
+        '%kernel.root_dir%/../vendor/tympanus/OriginalHoverEffects/css/style9.css'
+        filter='?yui_css'
+        output='css/OriginalHoverEffects.css'
+    %}
+    	<link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
+    {% endstylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+    {% include '::top.html.twig' %}
+    <div style="width:100%; height: 30px; margin-top: -20px;background-color: #0a6194;"></div>
+
+    <div class="page-background">
+        <div class="container page-content" style="padding: 0px 56px 24px; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+    		<div class="row text-right">
+				<h3>Bienvenido {{ app.user.username }}</h3>
+				{#<a href="{{ path('user_logout') }}">Cerrar sesión</a>#}
+			</div>
+			<div class="row" style="margin-top:30px;">
+				<div class="col-sm-4 col-md-3 text-center" style="margin-bottom:30px;">
+					<div class="btn-group-vertical" role="group" aria-label="...">
+						<a class="btn btn-primary" href="{{ path('ag_principal_panel_control') }}">Panel de Control</a>
+						<a class="btn btn-primary" href="#">Hacer pedido</a>
+						<a class="btn btn-success" href="#">Precios especiales</a>
+						<a class="btn btn-warning" href="#">Cotizaciones</a>
+						<a class="btn btn-danger" href="{{ path('ag_principal_nuevo_producto') }}">Nuevo producto</a>
+						<a class="btn btn-danger" href="{{ path('ag_principal_catalgo_admin') }}">Lista de productos</a>
+						<a class="btn btn-danger" href="#">Imágenes de slider</a>
+						<a class="btn btn-danger" href="#">Diseños para pedidos</a>
+					</div>
+				</div>
+				<div class="col-sm-8 col-md-9">
+					<div class="row">
+						{% for flashMessage in app.session.flashbag.get('notice') %}
+							<div class="row">
+							    <div class="alert alert-info">
+							        {{ flashMessage }}
+							    </div>
+							</div>
+						{% endfor %}
+						{% block contenido %}
+						{% endblock %}
+					</div>
+				</div>
+			</div>
+        </div>
+    </div>
+
+{% endblock %}

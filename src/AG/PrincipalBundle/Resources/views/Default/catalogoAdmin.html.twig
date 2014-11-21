@@ -1,34 +1,29 @@
-{% extends '::principal.html.twig' %}
+{% extends 'AGPrincipalBundle:Default:panel.html.twig' %}
 
 {% block contenido %}
-
-			<h4>Administración del Catálogo</h4>
-
-			<a href="{{url('ag_principal_nuevo_producto')}}">Nuevo producto</a>
-
-{#
-            {% if resultados %}
-                <table class="table table-striped table-hover table-responsive" style="height:0!important">
-                    <thead>
-                        <tr>
-                            <th>Novia</th>
-                            <th>Novio</th>
-                            <th>Fecha de la boda</th>
+    <h4>Administración de productos en el sitio</h4>
+    {#
+        {% if resultados %}
+            <table class="table table-striped table-hover table-responsive" style="height:0!important">
+                <thead>
+                    <tr>
+                        <th>Novia</th>
+                        <th>Novio</th>
+                        <th>Fecha de la boda</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pareja in resultados %}
+                        <tr class='clickableRow' href='{{url('nw_principal_mesa_regalos', {'usuarioId': pareja.usuarioId})}}' style="cursor:pointer; cursor: hand">
+                            <td>{{pareja.noviaNombre}}</td>
+                            <td>{{pareja.novioNombre}}</td>
+                            <td>{{pareja.fechaBoda}}</td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        {% for pareja in resultados %}
-                            <tr class='clickableRow' href='{{url('nw_principal_mesa_regalos', {'usuarioId': pareja.usuarioId})}}' style="cursor:pointer; cursor: hand">
-                                <td>{{pareja.noviaNombre}}</td>
-                                <td>{{pareja.novioNombre}}</td>
-                                <td>{{pareja.fechaBoda}}</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            {% else %}
-                <br /><strong>No se encontraron resultados</strong>
-            {% endif %}
-#}
-
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <br /><strong>No se encontraron resultados</strong>
+        {% endif %}
+    #}
 {% endblock %}

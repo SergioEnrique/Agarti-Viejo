@@ -1,3 +1,5 @@
+user_logout:
+       pattern:  /logout
 ag_principal_homepage:
     pattern:  /
     defaults: { _controller: AGPrincipalBundle:Default:index }

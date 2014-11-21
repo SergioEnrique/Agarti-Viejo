@@ -1,22 +1,17 @@
-{% extends '::principal.html.twig' %}
+{% extends 'AGPrincipalBundle:Default:panel.html.twig' %}
+
+{% block stylesheets %}
+	{{parent()}}
+	<style type="text/css">
+		#nuevoproducto_Agregar{
+			right: 0;
+			position: absolute;
+		}
+	</style>
+{% endblock %}
 
 {% block contenido %}
-
-	
-	{% for flashMessage in app.session.flashbag.get('notice') %}
-		<br />
-		<div class="row">
-		    <div class="alert alert-info">
-		        {{ flashMessage }}
-		    </div>
-		</div>
-	{% endfor %}
-		
-	<div class="row">
-		<h4>Formulario de Nuevo producto</h4>
-
-	    {{ form_start(formProducto) }}
-	    {{ form_end(formProducto) }}
-	</div>
-
+    <h4>Agregar un nuevo producto al sitio</h4>
+    {{ form_start(formProducto) }}
+	{{ form_end(formProducto) }}
 {% endblock %}

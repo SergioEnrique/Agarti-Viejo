@@ -6,16 +6,19 @@ security:
         ROLE_ESPECIAL: ROLE_DISTRIBUIDOR
 
     firewalls:
-        secured_area:
+        main:
             pattern:    ^/
             anonymous: ~
             http_basic:
                 realm: "Sitio para administradores y distribuidores"
+            logout:
+                path:   /logout
+                target: /
 
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/admin$, roles: ROLE_ADMIN }
-        - { path: ^/panel-control, roles: ROLE_DISTRIBUIDOR }
+        - { path: ^/panel-control$, roles: ROLE_DISTRIBUIDOR }
         - { path: ^/distribuidor$, roles: ROLE_DISTRIBUIDOR }
 
     providers:
