@@ -30,20 +30,20 @@
 					<h2 style="color: rgb(6, 123, 150); margin-top: 0px; font-size: 25px; margin-bottom:2px;">{{producto.nombre}}</h2>
 				</a>
 				<span style="font-size: 17px; color: rgb(93, 100, 108);">Clave: {{producto.clave}}</span>
+				<br />
 				{% if is_granted('ROLE_DISTRIBUIDOR') %}
-				<br />
-				<b>Precio: </b>
-				<span style="color:green; font-size:17px; {% if is_granted('ROLE_ESPECIAL') and producto.PrecioEspecial is not null%}text-decoration: line-through;{% endif %}">
-					${{ producto.Precio|number_format(2, '.', ',') }}
-				</span>
+					<b>Precio: </b>
+					<span style="color:green; font-size:17px; {% if is_granted('ROLE_ESPECIAL') and producto.PrecioEspecial is not null%}text-decoration: line-through;{% endif %}">
+						${{ producto.Precio|number_format(2, '.', ',') }}
+					</span>
 
-				{% if is_granted('ROLE_ESPECIAL') and producto.PrecioEspecial is not null%}
-				<span style="color:red; font-size:17px; margin-left:10px;">
-					${{ producto.PrecioEspecial|number_format(2, '.', ',') }}
-				</span>
+					{% if is_granted('ROLE_ESPECIAL') and producto.PrecioEspecial is not null%}
+					<span style="color:red; font-size:17px; margin-left:10px;">
+						${{ producto.PrecioEspecial|number_format(2, '.', ',') }}
+					</span>
+					{% endif %}
+					<br />
 				{% endif %}
-				<br />
-			{% endif %}
 				<span>Medidas: {{producto.medidas}}</span>
 			</div>
 			<div class="col-sm-3">
