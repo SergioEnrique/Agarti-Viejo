@@ -34,6 +34,19 @@ class DefaultController extends Controller
         return $this->render('AGPrincipalBundle:Default:contacto.html.twig');
     }
 
+    public function preciosEspecialesAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $productosRepository = $em->getRepository('AGPrincipalBundle:Producto');
+        $productosCollection = $productosRepository->findAll();
+
+        return $this->render('AGPrincipalBundle:Default:preciosEspeciales.html.twig', array(
+            "productos" =>  $productosCollection,
+        ));
+    }
+
+
     public function vistaCategoriaAction($categoriaSlug)
     {
         $em = $this->getDoctrine()->getManager();

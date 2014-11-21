@@ -13,7 +13,7 @@
 {% block contenido %}
 		
 	<div class="row">
-		<div class="col-sm-12">
+		<div class="col-sm-12" id="vistaProducto">
 			<h1 style="color: rgb(13, 85, 107); margin-bottom: 5px; font-size: 29px;">{{producto.nombre}}</h1>
 			<hr style="border-top: solid 2px rgb(226, 226, 226); margin-top: 0px; margin-bottom: 5px;" />
 		</div>
@@ -24,7 +24,7 @@
 		</div>
 		<div class="col-sm-4 text-center">
 			<div class="btn-group" role="group" aria-label="...">
-				<a class="btn btn-default" href="{{pastProductLink}}">Anterior</a>
+				<a class="btn btn-default" href="{{pastProductLink}}#vistaProducto">Anterior</a>
 				{#<div class="btn-group" role="group">
 					<a href="{{url('ag_principal_categorias',{categoriaSlug: producto.getCategory.slug})}}" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 						{{producto.getCategory.name}}
@@ -35,7 +35,7 @@
 						<li><a href="#">Dropdown link</a></li>
 					</ul>
 				</div>#}
-				<a class="btn btn-default" href="{{nextProductLink}}">Siguiente</a>
+				<a class="btn btn-default" href="{{nextProductLink}}#vistaProducto">Siguiente</a>
 			</div>
 		</div>
 		<div class="col-sm-4 text-right">
@@ -64,6 +64,20 @@
 
 		</div>
 		<div class="col-sm-7" style="padding-left:50px">
+			{% if is_granted('ROLE_DISTRIBUIDOR') %}
+				<b>Precio: </b>
+				<span style="color:green; font-size:17px; {% if is_granted('ROLE_ESPECIAL') and producto.PrecioEspecial is not null%}text-decoration: line-through;{% endif %}">
+					${{ producto.Precio|number_format(2, '.', ',') }}
+				</span>
+
+				{% if is_granted('ROLE_ESPECIAL') and producto.PrecioEspecial is not null%}
+				<span style="color:red; font-size:17px; margin-left:10px;">
+					${{ producto.PrecioEspecial|number_format(2, '.', ',') }}
+				</span>
+				{% endif %}
+				
+				<br /><br />
+			{% endif %}
 			<span><b>Clave:</b> {{producto.clave}}</span><br />
 			{% if producto.Medidas is not null %} <span><b>Medidas:</b> {{producto.Medidas}}</span><br />{% endif %}
 			{% if producto.Interior is not null %} <span><b>Interior:</b> {{producto.Interior}}</span><br />{% endif %}

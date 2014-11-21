@@ -27,13 +27,13 @@
 				<div class="col-sm-4 col-md-3 text-center" style="margin-bottom:30px;">
 					<div class="btn-group-vertical" role="group" aria-label="...">
 						<a class="btn btn-primary" href="{{ path('ag_principal_panel_control') }}">Panel de Control</a>
-						<a class="btn btn-primary" href="#">Hacer pedido</a>
-						<a class="btn btn-success" href="#">Precios especiales</a>
-						<a class="btn btn-warning" href="#">Cotizaciones</a>
-						<a class="btn btn-danger" href="{{ path('ag_principal_nuevo_producto') }}">Nuevo producto</a>
-						<a class="btn btn-danger" href="{{ path('ag_principal_catalgo_admin') }}">Lista de productos</a>
-						<a class="btn btn-danger" href="#">Imágenes de slider</a>
-						<a class="btn btn-danger" href="#">Diseños para pedidos</a>
+						{% if is_granted('ROLE_DISTRIBUIDOR') %}<a class="btn btn-primary" href="#">Hacer pedido</a>{% endif %}
+						{% if is_granted('ROLE_ESPECIAL') %}<a class="btn btn-success" href="{{path('ag_principal_precios_especiales')}}">Precios especiales</a>{% endif %}
+						{% if is_granted('ROLE_ADMIN') %}<a class="btn btn-warning" href="#">Cotizaciones</a>{% endif %}
+						{% if is_granted('ROLE_ADMIN') %}<a class="btn btn-danger" href="{{ path('ag_principal_nuevo_producto') }}">Nuevo producto</a>{% endif %}
+						{% if is_granted('ROLE_ADMIN') %}<a class="btn btn-danger" href="{{ path('ag_principal_catalgo_admin') }}">Lista de productos</a>{% endif %}
+						{% if is_granted('ROLE_ADMIN') %}<a class="btn btn-danger" href="#">Imágenes de slider</a>{% endif %}
+						{% if is_granted('ROLE_ADMIN') %}<a class="btn btn-danger" href="#">Diseños para pedidos</a>{% endif %}
 					</div>
 				</div>
 				<div class="col-sm-8 col-md-9">

@@ -21,6 +21,9 @@ ag_principal_editar_producto:
 ag_principal_borrar_foto:
     pattern:  /admin/borrar-foto/{fotoId}
     defaults: { _controller: AGPrincipalBundle:Default:borrarFoto }
+ag_principal_precios_especiales:
+    pattern:  /precios-especiales
+    defaults: { _controller: AGPrincipalBundle:Default:preciosEspeciales }
 ag_principal_nuevo_pedido:
     pattern:  /vendedor/nuevopedido
     defaults: { _controller: AGPrincipalBundle:Default:nuevoPedido }
