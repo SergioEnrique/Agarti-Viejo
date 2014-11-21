@@ -10,6 +10,9 @@ ag_principal_nuevo_producto:
 ag_principal_nuevo_pedido:
     pattern:  /vendedor/nuevopedido
     defaults: { _controller: AGPrincipalBundle:Default:nuevoPedido }
+ag_principal_conocenos:
+    pattern:  /informacion-sobre-agarti
+    defaults: { _controller: AGPrincipalBundle:Default:conocenos }
 ag_principal_categorias:
     pattern:  /{categoriaSlug}
     defaults: { _controller: AGPrincipalBundle:Default:vistaCategoria }

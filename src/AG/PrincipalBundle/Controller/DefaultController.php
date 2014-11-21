@@ -19,6 +19,11 @@ class DefaultController extends Controller
         return $this->render('AGPrincipalBundle:Default:index.html.twig');
     }
 
+    public function conocenosAction()
+    {
+        return $this->render('AGPrincipalBundle:Default:conocenos.html.twig');
+    }
+
     public function vistaCategoriaAction($categoriaSlug)
     {
         $em = $this->getDoctrine()->getManager();

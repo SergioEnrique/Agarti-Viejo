@@ -1,12 +1,18 @@
 <div class="container">
     <div class="top-row">
         <div class="logo-agarti">
-            <img src="{{asset('img/logo.jpg')}}" class="img-responsive">
+            <a href="{{url('ag_principal_homepage')}}">
+                <img src="{{asset('img/logo.jpg')}}" class="img-responsive">
+            </a>
         </div>
         <div class="info-title">
             <div class="row">
                 <div class="col-sm-12">
-                    <span class="atencion-clientes-top"> Atención a clientes: 01 800 713 4657</span>
+                    <span class="atencion-clientes-top">
+                        Atención a clientes: (55) 4995 0659
+                        <br />
+                        01 800 713 4657
+                    </span>
                 </div>
             </div>
             <div class="sadecv">
@@ -17,7 +23,7 @@
         </div>
         <div class="top-links">
             <span>
-                <a href="#">Inicio</a> | <a href="#">Acerca de Agarti</a> | <a href="#">Contacto</a>
+                <a href="{{url('ag_principal_homepage')}}">Inicio</a> | <a href="#">Acerca de Agarti</a> | <a href="#">Contacto</a>
             </span>
         </div>
     </div>
@@ -35,24 +41,28 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand visible-xs" href="#">Agarti</a>
+            <a class="navbar-brand visible-xs" href="{{url('ag_principal_homepage')}}">Agarti</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navegacion-ul">
-                <li class="active"><a href="#">Inicio</a></li>
-                <li><a href="#">Conócenos</a></li>
+                <li class="active"><a href="{{url('ag_principal_homepage')}}">Inicio</a></li>
+                <li><a href="{{url('ag_principal_conocenos')}}">Conócenos</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Productos <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">One more separated link</a></li>
+                        <li><a href="{{url('ag_principal_categorias', {categoriaSlug:'agendas-de-bolsillo'})}}">Agendas de Bolsillo</a></li>
+                        <li><a href="{{url('ag_principal_categorias', {categoriaSlug:'agendas-de-escritorio'})}}">Agendas de Escritorio</a></li>
+                        <li><a href="{{url('ag_principal_categorias', {categoriaSlug:'agendas-de-diario'})}}">Agendas de Caja y Diaria</a></li>
+                        <li><a href="{{url('ag_principal_categorias', {categoriaSlug:'directorios'})}}">Directorios Telefónicos</a></li>
+                        <li><a href="{{url('ag_principal_categorias', {categoriaSlug:'carpetas-de-vinil'})}}">Carpetas de Vinil</a></li>
+                        <li><a href="{{url('ag_principal_categorias', {categoriaSlug:'carpetas-de-curpiel'})}}">Carpetas de Curpiel</a></li>
+                        <li><a href="{{url('ag_principal_categorias', {categoriaSlug:'carpetas-escolares'})}}">Carpetas Escolares</a></li>
+                        <li><a href="{{url('ag_principal_categorias', {categoriaSlug:'tarjeteros'})}}">Tarjeteros</a></li>
+                        <li><a href="{{url('ag_principal_categorias', {categoriaSlug:'porta-menus'})}}">Porta menús</a></li>
+                        <li><a href="{{url('ag_principal_categorias', {categoriaSlug:'micas-y-porta-gafetes'})}}">Micas y Portagafetes</a></li>
+
                     </ul>
                 </li>
                 <li><a href="">Servicios</a></li>
