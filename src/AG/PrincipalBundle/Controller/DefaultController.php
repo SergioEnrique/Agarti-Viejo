@@ -31,9 +31,49 @@ class DefaultController extends Controller
         return $this->render('AGPrincipalBundle:Default:servicios.html.twig');
     }
 
-    public function contactoAction()
+    public function contactoAction(Request $request)
     {
-        return $this->render('AGPrincipalBundle:Default:contacto.html.twig');
+        // Se crea el formulario de  contacto
+        $formContacto = $this->createFormBuilder()
+            ->add('Asunto', 'text')
+            ->add('Nombre', 'text')
+            ->add('Email', 'email')
+            ->add('Mensaje', 'textarea')
+            ->add('Enviar', 'submit')
+            ->getForm();
+
+        // Recumerando formulario
+        $formContacto->handleRequest($request);
+        if($formContacto->isValid()) {
+
+            // Crear correo y enviarlo con los datos del formulario
+            $message = \Swift_Message::newInstance()
+            ->setSubject("Mensaje Agarti - ".$formContacto["Asunto"]->getData())
+            ->setFrom($formContacto["Email"]->getData())
+            ->setTo('agendas.agarti@gmail.com')
+            ->setBody(
+                $this->renderView(
+                    'AGPrincipalBundle:Default:contactoEmail.txt.twig',
+                    array(
+                        'asunto' => $formContacto["Asunto"]->getData(),
+                        'nombre' => $formContacto["Nombre"]->getData(),
+                        'email' => $formContacto["Email"]->getData(),
+                        'mensaje' => $formContacto["Mensaje"]->getData(),
+                    )
+                )
+            );
+            $this->get('mailer')->send($message);
+
+            // Se manda un mensaje de travesura realizada
+            $this->get('session')->getFlashBag()->set(
+                'notice',
+                'Su mensaje ha sido recibido con éxito. Responderemos lo más pronto posible.'
+            );
+        }
+
+        return $this->render('AGPrincipalBundle:Default:contacto.html.twig', array(
+            'formContacto' => $formContacto->createView(),
+        ));
     }
 
     public function preciosEspecialesAction()
