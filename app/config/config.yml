@@ -72,8 +72,8 @@ swiftmailer:
     encryption: ssl
     auth_mode:  login
     host:       smtp.gmail.com
-    username:   correo@gmail.com
-    password:   'contraseña'
+    username:   agendas.agarti2@gmail.com
+    password:   'google.12345'
 
 # Mopa Bootstrap
 mopa_bootstrap:
