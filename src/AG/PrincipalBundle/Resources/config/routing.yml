@@ -6,6 +6,12 @@ ag_principal_homepage:
 ag_principal_panel_control:
     pattern:  /panel-control
     defaults: { _controller: AGPrincipalBundle:Default:panelControl }
+ag_principal_slider_admin:
+    pattern:  /admin/slider
+    defaults: { _controller: AGPrincipalBundle:Default:sliderAdmin }
+ag_principal_borrar_sliderimg:
+    pattern:  /admin/borrar-sliderimg/{imagenId}
+    defaults: { _controller: AGPrincipalBundle:Default:borrarSliderImg }
 ag_principal_catalgo_admin:
     pattern:  /admin/catalogo
     defaults: { _controller: AGPrincipalBundle:Default:catalogoAdmin }

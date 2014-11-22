@@ -32,7 +32,7 @@
 						{% if is_granted('ROLE_ADMIN') %}<a class="btn btn-warning" href="#">Cotizaciones</a>{% endif %}
 						{% if is_granted('ROLE_ADMIN') %}<a class="btn btn-danger" href="{{ path('ag_principal_nuevo_producto') }}">Nuevo producto</a>{% endif %}
 						{% if is_granted('ROLE_ADMIN') %}<a class="btn btn-danger" href="{{ path('ag_principal_catalgo_admin') }}">Lista de productos</a>{% endif %}
-						{% if is_granted('ROLE_ADMIN') %}<a class="btn btn-danger" href="#">Imágenes de slider</a>{% endif %}
+						{% if is_granted('ROLE_ADMIN') %}<a class="btn btn-danger" href="{{ path('ag_principal_slider_admin') }}">Imágenes de slider</a>{% endif %}
 						{% if is_granted('ROLE_ADMIN') %}<a class="btn btn-danger" href="#">Diseños para pedidos</a>{% endif %}
 					</div>
 				</div>

@@ -1,0 +1,47 @@
+{% extends 'AGPrincipalBundle:Default:panel.html.twig' %}
+
+{% block stylesheets %}
+	{{parent()}}
+	<style type="text/css">
+		#ag_principalbundle_sliderimg_Agregar{
+			right: 0;
+			position: absolute;
+		}
+	</style>
+{% endblock %}
+
+{% block contenido %}
+	<div class="row">
+		<h4>Configuración de imágenes del slider</h4>
+		<p>Se recomienda subir imágenes de 720px de ancho por 300px de altura, en formato ".png", con fondo transparente y optimizado para web.</p>
+	</div>
+	<div class="row">
+		<div class="panel panel-default">
+	        <table class="table table-striped table-hover table-responsive">
+	            <thead>
+	                <tr>
+	                    <th>Imagen</th>
+	                    <th>Link</th>
+	                    <th>Eliminar</th>
+	                </tr>
+	            </thead>
+	            <tbody>
+	                {% for imagen in imagenes %}
+	                    <tr>
+	                        <td><img src="{{asset(imagen.getWebPath)}}" style="max-width:100px;" /></td>
+	                        <td>{{imagen.link}}</td>
+	                        <td><a href="{{ path('ag_principal_borrar_sliderimg', {imagenId: imagen.Id}) }}"><img src="{{asset('img/xdelete.gif')}}"></a></td>
+	                    </tr>
+	                {% endfor %}
+	            </tbody>
+	        </table>
+	    </div>
+	</div>
+	<div class="row">
+		<h4>Agregar nueva imagen</h4>
+	</div>
+	<div class="row">
+		{{ form_start(formSliderImg) }}
+		{{ form_end(formSliderImg) }}
+	</div>
+{% endblock %}

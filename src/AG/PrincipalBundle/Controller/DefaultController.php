@@ -9,8 +9,10 @@ use Symfony\Component\HttpFoundation\Request;
 use AG\PrincipalBundle\Entity\Producto;
 use AG\PrincipalBundle\Entity\Category;
 use AG\PrincipalBundle\Entity\Foto;
+use AG\PrincipalBundle\Entity\SliderImg;
 
 use AG\PrincipalBundle\Form\Type\NuevoProductoType;
+use AG\PrincipalBundle\Form\SliderImgType;
 
 class DefaultController extends Controller
 {
@@ -46,6 +48,70 @@ class DefaultController extends Controller
         ));
     }
 
+    public function sliderAdminAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        // Generar un nuevo objeto imagen de slider por si se sube
+        $nuevaImagen = new SliderImg();
+        $formSliderImg = $this->createForm(new SliderImgType(), $nuevaImagen);
+
+        // Recuperando formularios
+        if('POST' === $request->getMethod()) {
+            if($request->request->has($formSliderImg->getName())) {
+
+                // Cargar el formulario contestado y procesarlo si es correcto
+                $formSliderImg->handleRequest($request);
+                if($formSliderImg->isValid())
+                {
+
+                    // Subir imágen
+                    $nuevaImagen->setFile($formSliderImg["Imagen"]->getData());
+                    $nuevaImagen->upload();
+                    $em->persist($nuevaImagen);
+                    $em->flush();
+
+                    // Se manda un mensaje de travesura realizada
+                    $this->get('session')->getFlashBag()->set(
+                        'notice',
+                        'Travesura realizada: Imágen agregada al slider y almacenada en la base de datos.'
+                    );
+
+                    // Nuevo formulario para agregar más imágenes
+                    $nuevaImagen = new SliderImg();
+                    $formSliderImg = $this->createForm(new SliderImgType(), $nuevaImagen);
+                }
+            }
+        }
+
+        // Obtener las imágenes de slider existentes
+        $sliderImgRepository = $em->getRepository('AGPrincipalBundle:SliderImg');
+        $sliderImgCollection = $sliderImgRepository->findAll();
+
+        return $this->render('AGPrincipalBundle:Default:sliderConfig.html.twig', array(
+            'formSliderImg' => $formSliderImg->createView(), 
+            'imagenes' => $sliderImgCollection,
+        ));
+    }
+
+    public function borrarSliderImgAction($imagenId)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $sliderImgRepository = $em->getRepository('AGPrincipalBundle:SliderImg');
+        $imagenObject = $sliderImgRepository->find($imagenId);
+
+        $em->remove($imagenObject);
+        $em->flush();
+
+        // Se manda un mensaje de travesura realizada
+        $this->get('session')->getFlashBag()->set(
+            'notice',
+            'Travesura realizada: La imagen se ha eliminado del slider y la base de datos.'
+        );
+
+        return $this->redirect($this->generateUrl('ag_principal_slider_admin'));
+    }
 
     public function vistaCategoriaAction($categoriaSlug)
     {
@@ -152,7 +218,7 @@ class DefaultController extends Controller
         // Se manda un mensaje de travesura realizada
         $this->get('session')->getFlashBag()->set(
             'notice',
-            'El producto ('.$productoObject->getNombre().') ha sido eliminado de la base de datos.'
+            'Travesura realizada: El producto ('.$productoObject->getNombre().') ha sido eliminado de la base de datos.'
         );
 
         return $this->redirect($this->generateUrl('ag_principal_catalgo_admin'));
@@ -220,7 +286,7 @@ class DefaultController extends Controller
                     // Se manda un mensaje de travesura realizada
                     $this->get('session')->getFlashBag()->set(
                         'notice',
-                        'El producto ('.$productoObject->getNombre().') se editó con éxito en la base de datos.'
+                        'Travesura realizada: El producto ('.$productoObject->getNombre().') se editó con éxito en la base de datos.'
                     );
 
                     // Se redirecciona a la página de lista de productos
@@ -250,7 +316,7 @@ class DefaultController extends Controller
         // Se manda un mensaje de travesura realizada
         $this->get('session')->getFlashBag()->set(
             'notice',
-            'Foto eliminada.'
+            'Travesura realizada: Foto eliminada.'
         );
 
         return $this->redirect($this->generateUrl('ag_principal_editar_producto', array('productoId' => $productoId)));
@@ -317,7 +383,7 @@ class DefaultController extends Controller
                     // Se manda un mensaje de travesura realizada
                     $this->get('session')->getFlashBag()->set(
                         'notice',
-                        'El nuevo producto ('.$nuevoProducto->getNombre().') ha sido agregado a la base de datos.'
+                        'Travesura realizada: El nuevo producto ('.$nuevoProducto->getNombre().') ha sido agregado a la base de datos.'
                     );
 
                     // Se hace un nuevo formulario

@@ -1,28 +1,29 @@
 <?php
+
 namespace AG\PrincipalBundle\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
+
 /**
- * Foto
+ * SliderImg
  */
-class Foto
+class SliderImg
 {
     /**
      * @var integer
      */
     private $id;
+
     /**
-     * @var integer
+     * @var string
      */
-    private $productoID;
+    private $link;
+
     /**
      * @var string
      */
     private $path;
-    /**
-     * @var \AG\PrincipalBundle\Entity\Producto
-     */
-    private $producto;
+
     /**
      * Get id
      *
@@ -32,37 +33,43 @@ class Foto
     {
         return $this->id;
     }
+
     /**
-     * Set productoID
+     * Set link
      *
-     * @param integer $productoID
-     * @return Foto
+     * @param string $link
+     * @return SliderImg
      */
-    public function setProductoID($productoID)
+    public function setLink($link)
     {
-        $this->productoID = $productoID;
+        $this->link = $link;
+
         return $this;
     }
+
     /**
-     * Get productoID
+     * Get link
      *
-     * @return integer 
+     * @return string 
      */
-    public function getProductoID()
+    public function getLink()
     {
-        return $this->productoID;
+        return $this->link;
     }
+
     /**
      * Set path
      *
      * @param string $path
-     * @return Foto
+     * @return SliderImg
      */
     public function setPath($path)
     {
         $this->path = $path;
+
         return $this;
     }
+
     /**
      * Get path
      *
@@ -72,51 +79,35 @@ class Foto
     {
         return $this->path;
     }
-    
-    /**
-     * Set producto
-     *
-     * @param \AG\PrincipalBundle\Entity\Producto $producto
-     * @return Foto
-     */
-    public function setProducto(\AG\PrincipalBundle\Entity\Producto $producto = null)
-    {
-        $this->producto = $producto;
-        return $this;
-    }
-    /**
-     * Get producto
-     *
-     * @return \AG\PrincipalBundle\Entity\Producto 
-     */
-    public function getProducto()
-    {
-        return $this->producto;
-    }
+
     public function getAbsolutePath()
     {
         return null === $this->path
             ? null
             : $this->getUploadRootDir().'/'.$this->path;
     }
+
     public function getWebPath()
     {
         return null === $this->path
             ? null
             : $this->getUploadDir().'/'.$this->path;
     }
+
     protected function getUploadRootDir()
     {
         // the absolute directory path where uploaded
         // documents should be saved
         return __DIR__.'/../../../../web/'.$this->getUploadDir();
     }
+
     protected function getUploadDir()
     {
         // get rid of the __DIR__ so it doesn't screw up
         // when displaying uploaded doc/image in the view.
-        return 'uploads/productos/'.$this->producto->getId();
+        return 'img/slider';
     }
+
     /**
      * 
      */
@@ -126,10 +117,12 @@ class Foto
      *
      * @param UploadedFile $file
      */
+
     public function setFile(UploadedFile $file = null)
     {
         $this->file = $file;
     }
+
     /**
      * Get file.
      *
@@ -139,6 +132,7 @@ class Foto
     {
         return $this->file;
     }
+
     public function upload()
     {
         // the file property can be empty if the field is not required
