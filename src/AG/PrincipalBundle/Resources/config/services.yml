@@ -13,3 +13,8 @@ services:
     producto_service:
         class:     %producto_service.class%
         arguments: [@router, @doctrine.orm.entity_manager]
+    ag.twig.slider_extension:
+        class: AG\PrincipalBundle\Twig\SliderExtension
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - { name: twig.extension }

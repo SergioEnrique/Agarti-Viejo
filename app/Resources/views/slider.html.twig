@@ -5,13 +5,17 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
 
-                <div class="item active text-center">
-                    <img src="{{asset('img/slider/bannerPrueba2.jpg')}}" alt="..." style="display:inline;" />
-                </div>
-
-                <div class="item text-center">
-                    <img src="{{asset('img/slider/bannerPrueba3.jpg')}}" alt="..." style="display:inline;" />
-                </div>
+                {% for image in sliderImages() %}
+                    <div class="item text-center{% if loop.first %} active{% endif %}">
+                        {% if image.link is not null %}
+                        <a href="{{image.link}}">
+                            <img src="{{asset(image.getWebPath)}}" alt="" style="display:inline;" />
+                        </a>
+                        {% else %}
+                            <img src="{{asset(image.getWebPath)}}" alt="" style="display:inline;" />
+                        {% endif %}
+                    </div>
+                {% endfor %}
 
             </div>
 
@@ -28,9 +32,9 @@
             <div class="container">
                 <!-- Indicators -->
                 <ol class="carousel-indicators">
-                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                    {% for image in sliderImages() %}
+                        <li data-target="#carousel-example-generic" data-slide-to="{{ loop.index0 }}"{% if loop.first %} class="active"{% endif %}></li>
+                    {% endfor %}
                 </ol>
             </div>
         </div>
