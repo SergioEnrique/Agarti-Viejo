@@ -1,5 +1,8 @@
 {% extends '::principal.html.twig' %}
 
+{% block title %}{{producto.Nombre}} - {{producto.getCategory.name}} - Agarti{% endblock %}
+{% block description %}{{producto.Descripcion}}{% endblock %}
+
 {% block stylesheets %}
 	{{parent()}}
 	<link rel="stylesheet" type="text/css" href="{{asset('css/cloudzoom.css')}}" />

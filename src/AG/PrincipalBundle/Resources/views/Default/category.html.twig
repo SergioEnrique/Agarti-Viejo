@@ -1,5 +1,8 @@
 {% extends '::principal.html.twig' %}
 
+{% block title %}{{category.name}} - Agarti{% endblock %}
+{% block description %}{{category.description}}{% endblock %}
+
 {% block stylesheets %}
 	{{parent()}}
 	<style type="text/css">
