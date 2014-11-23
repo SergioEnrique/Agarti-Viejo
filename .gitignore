@@ -1,4 +1,5 @@
 /app/config/parameters.yml
+/app/config/params.php
 phpunit.xml
 composer.lock
 composer.phar
