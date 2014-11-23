@@ -48,7 +48,7 @@ class DefaultController extends Controller
             // Correo con la lista de precios al cliente
             $message = \Swift_Message::newInstance()
             ->setSubject("Lista de precios - Agarti")
-            ->setFrom("agendas.agarti2@gmail.com")
+            ->setFrom("noreply@agarti.com.mx")
             ->setTo($email)
             ->setBody(
                 $this->renderView(
@@ -63,8 +63,8 @@ class DefaultController extends Controller
             // Correo para notificar que alguien descargó la lista de precios
             $message = \Swift_Message::newInstance()
             ->setSubject("Descargaron la Lista de Precios en Agarti")
-            ->setFrom("agendas.agarti2@gmail.com")
-            ->setTo("agendas.agarti@gmail.com")
+            ->setFrom("noreply@agarti.com.mx")
+            ->setTo("svargas@agarti.com.mx")
             ->setBody(
                 $this->renderView(
                     'AGPrincipalBundle:Default:alguienDescargoListaPrecios.txt.twig', array(
