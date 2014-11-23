@@ -1,0 +1,8 @@
+Hola {{nombre}}, a continuación te presentamos nuestra lista de precios:
+
+{% for producto in productos %}
+	{{producto.Nombre}}, clave: {{producto.clave}}, precio: ${{producto.Precio|number_format(2, '.', ',')}}
+{% endfor %}
+
+
+Atentamente: Agarti - Agendas y Artículos de Calidad, S.A. de C.V.

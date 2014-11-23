@@ -2,6 +2,13 @@
 
 {% block contenido %}
 
+	{% for flashMessage in app.session.flashbag.get('notice') %}
+		<div class="row" style="margin-top:30px;">
+		    <div class="alert alert-info">
+		        {{ flashMessage }}
+		    </div>
+		</div>
+	{% endfor %}
 	<div class="top-row text-right ">
 		<div class="col-xs-12">
 			<h3>Cotiza ahora y compra online, checa nuestro nuevo catálogo</h3>

@@ -31,6 +31,60 @@ class DefaultController extends Controller
         return $this->render('AGPrincipalBundle:Default:servicios.html.twig');
     }
 
+    public function listaPreciosAction(Request $request)
+    {
+        // Recuperando formularios
+        if('POST' === $request->getMethod()) {
+
+            // Información del contacto
+            $nombre = $this->get('request')->request->get('nombre');
+            $email = $this->get('request')->request->get('email');
+
+            // Obtener lista de todos los productos
+            $em = $this->getDoctrine()->getManager();
+            $productosRepository = $em->getRepository('AGPrincipalBundle:Producto');
+            $productosCollection = $productosRepository->findAll();
+
+            // Correo con la lista de precios al cliente
+            $message = \Swift_Message::newInstance()
+            ->setSubject("Lista de precios - Agarti")
+            ->setFrom("agendas.agarti2@gmail.com")
+            ->setTo($email)
+            ->setBody(
+                $this->renderView(
+                    'AGPrincipalBundle:Default:listaPreciosEmail.txt.twig', array(
+                        'nombre' => $nombre,
+                        'productos' => $productosCollection,
+                    )
+                )
+            );
+            $this->get('mailer')->send($message);
+
+            // Correo para notificar que alguien descargó la lista de precios
+            $message = \Swift_Message::newInstance()
+            ->setSubject("Descargaron la Lista de Precios en Agarti")
+            ->setFrom("agendas.agarti2@gmail.com")
+            ->setTo("agendas.agarti@gmail.com")
+            ->setBody(
+                $this->renderView(
+                    'AGPrincipalBundle:Default:alguienDescargoListaPrecios.txt.twig', array(
+                        'nombre' => $nombre,
+                        'email' => $email,
+                    )
+                )
+            );
+            $this->get('mailer')->send($message);
+
+            // Se manda un mensaje de travesura realizada
+            $this->get('session')->getFlashBag()->set(
+                'notice',
+                'Se ha enviado exitosamente la lista de precios a su correo. Si tiene problemas para recibirlo o tiene alguna duda, contacte con nosotros en contacto@agarti.com.mx'
+            );
+        }
+
+        return $this->redirect($this->generateUrl('ag_principal_homepage'));
+    }
+
     public function contactoAction(Request $request)
     {
         // Se crea el formulario de  contacto

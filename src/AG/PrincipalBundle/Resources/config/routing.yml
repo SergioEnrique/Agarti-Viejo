@@ -42,6 +42,9 @@ ag_principal_servicios:
 ag_principal_contacto:
     pattern:  /contacto
     defaults: { _controller: AGPrincipalBundle:Default:contacto }
+ag_principal_lista_precios:
+    pattern:  /lista-precios
+    defaults: { _controller: AGPrincipalBundle:Default:listaPrecios }
 ag_principal_categorias:
     pattern:  /{categoriaSlug}
     defaults: { _controller: AGPrincipalBundle:Default:vistaCategoria }
